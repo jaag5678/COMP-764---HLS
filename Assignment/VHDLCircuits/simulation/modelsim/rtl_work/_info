@@ -1,0 +1,92 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/simulation/modelsim
+Eint32dualportram
+Z1 w1642698378
+Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z5 8C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/int32dualportRAM.vhd
+Z6 FC:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/int32dualportRAM.vhd
+l0
+L17
+V@?Z1Pj[Fl5WK_eOY?aaze1
+!s100 N;9JZYGfgAao>9ZhiV?UW1
+Z7 OV;C;10.5b;63
+31
+Z8 !s110 1643687720
+!i10b 1
+Z9 !s108 1643687720.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/int32dualportRAM.vhd|
+Z11 !s107 C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/int32dualportRAM.vhd|
+!i113 1
+Z12 o-93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Adpram
+R2
+R3
+R4
+DEx4 work 16 int32dualportram 0 22 @?Z1Pj[Fl5WK_eOY?aaze1
+l37
+L32
+VEBVR>Ld?m3X:J0l2cKOCL2
+!s100 ?8kKSZIS3U=Y@;8SR@QQ=0
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Etestbench_int32dualportram
+Z14 w1643687605
+R2
+R3
+R4
+R0
+Z15 8C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/testbench_int32dualportRAM.vhd
+Z16 FC:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/testbench_int32dualportRAM.vhd
+l0
+L7
+V4j0aWJmICVVJail0PDBDM3
+!s100 mh@zn`iUVge91iBkBXeoZ2
+R7
+31
+R8
+!i10b 1
+R9
+Z17 !s90 -reportprogress|300|-93|-work|work|C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/testbench_int32dualportRAM.vhd|
+Z18 !s107 C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/testbench_int32dualportRAM.vhd|
+!i113 1
+R12
+R13
+Atb
+R2
+R3
+R4
+DEx4 work 26 testbench_int32dualportram 0 22 4j0aWJmICVVJail0PDBDM3
+l34
+L12
+V;`[F5Q4PfS_A`JN>i;f`f0
+!s100 3?UaJ_OHYZCgb8?ok_CEW3
+R7
+31
+R8
+!i10b 1
+R9
+R17
+R18
+!i113 1
+R12
+R13

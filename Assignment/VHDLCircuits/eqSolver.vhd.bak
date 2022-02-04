@@ -1,0 +1,39 @@
+--Building a circuit for the program 
+	-- mem = malloc(int * 4);
+	-- mem[3] = mem[0] * mem[1] + mem[2];
+	
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+
+--interface of circuit
+	--to solve the equation, firstly some values are required for each of the memory
+	-- since the equation involve adding and mult among 3 integers, out INPUT is 3 integers 
+	-- the output then is the integer value which is stored in the RAM, so OUPUT is 1 integer
+	-- Summary 
+		-- input - 3 integers
+		-- output - 1 integer
+entity eqSolver is 
+	port (
+		a: IN integer;
+		b: IN integer;
+		c: IN integer;
+		q: OUT integer
+	);
+end eqSolver;
+
+--specification
+architecture calc_circuit of eqSolver is 
+
+	--First we need a RAM component 
+	component int32dualportRAM is 
+		generic (4);
+		port (
+			clk: IN std_logic;
+			we: IN std_logic;
+			addr_w: IN std_logic_vector (addr_width - 1 downto 0);
+			addr_r: IN std_logic_vector (addr_width - 1 downto 0);
+			d_in: IN integer;
+			d_out: OUT integer
+		);
+	end component;
