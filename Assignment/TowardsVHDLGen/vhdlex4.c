@@ -121,7 +121,7 @@ int main () {
 
     reg **list = reg_alloc(list, reg_cnt, ex4);
 
-    cse(list);
+    //cse(list);
     
     for(int i = 0; i < ex4->loc; i++) {
         init_schd(ex4->dfgs[i]);
@@ -137,6 +137,8 @@ int main () {
     */
     int add_cnt = get_max_res_blck(ex4, 'A');
     int mul_cnt = get_max_res_blck(ex4, 'M');
+
+    //pretty_print_blck(ex4);
 
     //printf("A %d M %d\n", add_cnt, mul_cnt);
     

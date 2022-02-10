@@ -27,6 +27,6 @@ void port_map_resrc(resrc **, mux **, reg**);
 
 gnode ** get_list_from_sch(gnode **, int *, gnode *, int);
 
-void state_machine_simulate(basic_block *, mux **, mux **, resrc **, resrc **, char **);
+void state_machine_simulate(basic_block *, mux **, mux **, resrc **, resrc **, char **, reg **);
 
 void gen_vhdl(basic_block *, mux **, mux **, resrc **, resrc **, char **, reg **);

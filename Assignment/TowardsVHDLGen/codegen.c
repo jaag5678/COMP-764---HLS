@@ -166,7 +166,7 @@ void port_map_ram(char **mems, reg **reg_list) {
                 sel++;
             }
         }
-        printf("%s: int32dualportRAM port map(clk, we_%s, aw_%s, ar_%s, din_%s, dout_%s);\n\n", m, m, m, m, m, m);
+        printf("%s: int32dualportRAM port map(clk_f, we_%s, aw_%s, ar_%s, din_%s, dout_%s);\n\n", m, m, m, m, m, m);
     }
 
 }
@@ -282,7 +282,7 @@ gnode ** get_list_from_sch(gnode **list, int *insert, gnode *g, int schd) {
 
 }
 
-void state_machine_simulate(basic_block *b, mux **add_mux, mux **mul_mux, resrc **add, resrc **mul, char **mems) {
+void state_machine_simulate(basic_block *b, mux **add_mux, mux **mul_mux, resrc **add, resrc **mul, char **mems, reg **reg_list) {
 
     //Get the changes
     int add_cnt = 0;
@@ -326,8 +326,10 @@ void state_machine_simulate(basic_block *b, mux **add_mux, mux **mul_mux, resrc 
             {
             case 'S':
                 //Set the correct RAM block write address
+                printf("din_%s <= %s;\n", list[k]->mem, get_reg_name(get_reg_from_node(list[k]->neighbors[0], reg_list)));
                 printf("aw_%s <= std_logic_vector(to_unsigned(%d, 32));\n", list[k]->mem, list[k]->index);
                 printf("we_%s <= '1';\n", list[k]->mem);
+                
                 break;
             
             case 'L':
@@ -427,7 +429,7 @@ void gen_vhdl(basic_block *b, mux **add_mux, mux **mul_mux, resrc **add, resrc *
 
     printf("entity circuit is \n");
     printf("port ( \n");
-    printf("clk: IN std_logic;\n");
+    printf("clk_f: IN std_logic;\n");
     printf("q: OUT integer\n");
     printf(");\n");
     printf("end circuit;\n\n");
@@ -456,16 +458,16 @@ void gen_vhdl(basic_block *b, mux **add_mux, mux **mul_mux, resrc **add, resrc *
     printf("\n\n");
     printf("process(clk)\nbegin\n\n");
 
-    printf("if (clk'event and clk='1') then \n");
+    printf("if (clk_f'event and clk_f='1') then \n");
 
-    state_machine_simulate(b, add_mux, mul_mux, add, mul, mems);
+    state_machine_simulate(b, add_mux, mul_mux, add, mul, mems, reg_list);
 
     printf("\n\n");
     printf("end if;\n");
 
     printf("end process;\n\n");
 
-    printf("q <= 1;\n\n");
+    printf("q <= state;\n\n");
 
     printf("end hls;\n");
 
