@@ -1,4 +1,5 @@
-\documentclass[notes, xcolor=dvipsnames]{beamer}
+%\documentclass[notes, xcolor=dvipsnames]{beamer}
+\documentclass[xcolor=dvipsnames]{beamer}
 
 \usetheme{Berkeley}
 
@@ -20,14 +21,45 @@
 
     \end{frame}
 
+    \begin{frame}{Who are the authors?}
+
+        \begin{columns}
+            
+            \begin{column}[]{0.5\textwidth}
+
+                Yann Herklotz - PhD student supervised by John Wickerson, Imperial College London. 
+                \begin{figure}
+                    \includegraphics[scale=0.2]{YannHerklotz.jpg}
+                \end{figure}
+                
+            \end{column}
+
+
+            \begin{column}[]{0.5\textwidth}
+                John Wickerson - Lecturer at Dept of Electrical and Electronic Engineering, Imperial College London.
+                \begin{figure}
+                    \includegraphics[scale=0.2]{john.jpg}
+                \end{figure}
+                
+            \end{column}
+
+
+
+        \end{columns}
+        
+    \end{frame}
+
+
     \logo{}
+
+
 
     \section{Intro}
     \begin{frame}{Introduction: questions}
 
         \begin{itemize}
-            \item Why do they matter? 
             \item What forms of bugs does this paper address? 
+            \item Why do they matter? 
             \item How do they address? 
             \item What results did they get?  
         \end{itemize}
@@ -38,16 +70,16 @@
     \begin{frame}{What bugs?}
 
         \begin{itemize}
-            \item All our programs are ultimately run by the hardware. 
-            \item Some circuit out there (eg: CPU, GPU, FPGA, ASIC) ultimately runs whatever program we write. 
-            \item Circuits are also designed today using the same type of programs as above.
-            \item High level synthesis tools exist for this purpose. 
+            \item Programs are ultimately run by the hardware. 
+            \item Circuits are designed today using similar high-level program constructs.
+            \item High level synthesis(HLS) tools exist for this purpose. 
             \item If the HLS tools are not designed correctly, can we trust the hardware on which our programs run? 
         \end{itemize}
         
     \end{frame}
 
     \note{
+        Some circuit out there (eg: CPU, GPU, FPGA, ASIC) ultimately runs whatever program we write.
         Including running this pdf viewer for this presentation. 
         We assume that whatever hardware that runs our programs is perfectly built.
 
@@ -60,10 +92,8 @@
 
     \begin{frame}{What sort of bugs are addressed?}
 
-
         \begin{itemize}
-            \item Bugs are often in the several optimizations done by HLS tools.
-            \item These optimizations are done to meet several needs such as timing, area, power, etc.
+            \item Optimizations in HLS are done to meet several needs such as timing, area, power, etc.
             \item The result after synthesis is a netlist (wires and their interconnection to circuit elements). 
             \item If input program and netlist are not same, this is a bug.
             \item If the HLS tool crashes on a valid program, this is a bug. 
@@ -102,7 +132,7 @@
 
         \begin{itemize}
             \item Four tools were tested this way: Yosys, Vivado, XST and Quartus Prime. 
-            \item Except Quartus prime, every other tool had at least one bug of the above types. 
+            \item Except Quartus prime(paid version), every other tool had at least one bug of the above types. 
             \item Vivado and Yosys(dev ver.) also crashed for a few program inputs.
         \end{itemize}
         
@@ -119,7 +149,7 @@
                 
                 Program elements are:
                 \begin{itemize}  
-                    \item Modules (line 1). 
+                    \item Modules (line 1..9). 
                     \item Wire (line 2,3,4) and variable (line 5).
                     \item Unary and binary operators (line 8). 
                     \item Assignments (line 6).
@@ -185,10 +215,13 @@
     \begin{frame}{Step 2: Equivalence Checking}
 
         \begin{itemize} 
-            \item Feed it to Yosys.
-            \item Generate two netlists for each.
-            \item Pass it to SMT solver. 
-            \item If it returns some result do what is needed.
+            \item Feed it to Yosys (HLS tool).
+            \item Pass it to SMT solver or ABC tool. 
+            \item If it returns some result:
+                \begin{itemize}
+                    \item If a counter example, pass it to reduction phase.
+                    \item If no counter example, continue to next verilog design.
+                \end{itemize}.
             \item If it timeouts cant do a thing.
         \end{itemize}
 
@@ -214,7 +247,7 @@
         \begin{itemize}
             \item Reduction is done in a binary fashion. 
             \item Rerun the equivalence checking after every reduction step.
-            \item The reduction process is halted when the program no longer produces a bug (which bug?).
+            \item The reduction process is halted when the program no longer produces a bug.
         \end{itemize}
         
     \end{frame}
@@ -247,11 +280,12 @@
 
     \end{frame}
 
+
     \begin{frame}{Unique Bug 1}
         
         Yosys peephole optimization.
         \begin{figure}
-            \includegraphics{Yosys_Peephole.PNG}
+            \includegraphics[scale=0.8]{Yosys_Peephole.PNG}
         \end{figure}
 
         For input like $w=3'b100$, the shift amount is incorrectly given as $6'b011000$, making $y$ $0$.
@@ -261,11 +295,10 @@
     \note{
             \begin{itemize}
                 \item Line 4 is optimized noting that the shift and product contains a constant.
+                \item So it can be optimized to $w >> 1 + w >> 2$.
                 \item However, proper truncation was not done (note that the product is between 3 bit binaries) 
                 \item So the program after optimization, for an input like $w=3'b100$ gave output of $y$ as $0$, instead of $1$.
             \end{itemize}
-
-
 
     }
 
@@ -273,10 +306,10 @@
         
         Vivado bug.
         \begin{figure}
-            \includegraphics{Vivado.PNG}
+            \includegraphics[scale=0.8]{Vivado.PNG}
         \end{figure}
 
-        Line 12 is optimized to have r1 be w[0:0] in 2nd clock cycle.
+        Line 10 is optimized to have r1 be w[0:0] in 2nd clock cycle.
         However, truncation is not done. So $r1$ is incorrectly a 2-bit value (as opposed to 1-bit).
 
     \end{frame}
@@ -290,18 +323,27 @@
         \end{itemize}
     }
 
+    
+    \begin{frame}{Summary of Testing}
+        
+        \begin{figure}
+            \includegraphics[scale=0.6]{Test_Summary.PNG}
+        \end{figure}
+
+    \end{frame}
+
     \begin{frame}{Code size ?? Bug finding}
         
         Code size vs bug finding, stats. 
         \begin{figure}
-            \includegraphics{CodeSize_vs_Bugs.PNG}
+            \includegraphics[scale=0.8]{CodeSize_vs_Bugs.PNG}
         \end{figure}
 
     \end{frame}
 
     \note{
         \begin{itemize}
-            \item The colums from left to right represent how many bugs found for each configuration of verismith.
+            \item The columns from left to right represent how many bugs found for each configuration of verismith.
             \item Configuration was in terms of how many lines of code a test case must contain (with the leftmost being the least).
             \item Interesting to note that the fewer lines of code, the more bugs were uncovered.
             \item However, the bigger the lines of code, the more crashes were identified. 
@@ -313,7 +355,7 @@
         
         Stats. 
         \begin{figure}
-            \includegraphics{Concat_vs_Xor.PNG}
+            \includegraphics[scale=0.8]{Concat_vs_Xor.PNG}
         \end{figure}
         Bug finding time  worse if we Xor outputs. 
         Counter intuitive.
@@ -326,10 +368,13 @@
             \item The left chart is that when output is a concatenation.
             \item Whereas the right is that when it is a XOR. 
             \item Interesting to note that when the output is XOR, the equivalence checking takes way longer and 1/3rd of the time times out.
+            \item Reason can be intuitively viewed as: Xor-ing introduces another set of dependency to output.
+            \item So because of this the solver needs to explore more space.
         \end{itemize}
     }
 
-    \subsection{Discussion}
+    \section{Discussion}
+    \subsection{Pros}
     \begin{frame}{Pros?}
         
         \begin{itemize}
@@ -341,16 +386,25 @@
 
     \end{frame}
 
+    \subsection{Cons}
     \begin{frame}{Cons?}
         
         \begin{itemize}
-            \item Cannot perform syntax and semantic parts of HLS bugs. 
-            \item Equivalence checking done using an HLS tool itself (Yosys). 
-            \item Reduction process halves modules/outputs. Perhaps a better way is to build a dependency tree of all vars/nets and remove mostly connected nodes.  
-            \item Does not work for Verilog code based on undefined values. Perhaps the optimizations should not rely on undefined values to be aggressive like C11. 
+            \item Cannot identify bugs at syntax and semantic parts of HLS. 
+            \item Reduction process halves modules/outputs. 
+            \item Does not work for Verilog code based on undefined values. 
+            \item Bug examples in paper seem to only circulate around incorrect assignment of array widths after operations. 
         \end{itemize}
 
     \end{frame}
+
+    \note {
+        \begin{itemize}
+            \item Perhaps a better way is to build a dependency tree of all vars/nets and remove mostly connected nodes.  
+            \item Perhaps the optimizations should not rely on undefined values to be aggressive like C11.
+            \item There could be other forms of bugs, but do they detect them too? 
+        \end{itemize}
+    }
 
     \begin{frame}{Thank you!}
 
