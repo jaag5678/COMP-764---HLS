@@ -2,8 +2,13 @@
 
 \usetheme{Berkeley}
 
+\setbeamertemplate{footline}[frame number]
+%\setbeamertemplate{headline}{}
+
+\usepackage{inputenc}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{hyperref}
 
 \title{Scheduling Weakly Consistent C Programs for Reconfigurable Hardware}
 \subtitle{Nadesh Ramanathan, John Wickerson, George Constantinides.}
@@ -20,10 +25,44 @@
 
     \begin{frame}{Who are they?}
 
+           \begin{columns}
+                
+            \begin{column}[]{0.3\textwidth}
+
+                Yann Herklotz - PhD student supervised by John Wickerson, Imperial College London. 
+                \begin{figure}
+                    \includegraphics[scale=0.2]{YannHerklotz.jpg}
+                \end{figure}
+                
+            \end{column}
+
+
+            \begin{column}[]{0.3\textwidth}
+                John Wickerson - Lecturer at Dept of Electrical and Electronic Engineering, Imperial College London.
+                \begin{figure}
+                    \includegraphics[scale=0.2]{john.jpg}
+                \end{figure}
+                
+            \end{column}
+
+            \begin{column}[]{0.3\textwidth}
+                George Constantinides - Professor of Digital Computation, Imperial College London.
+                \begin{figure}
+                    \includegraphics[scale=0.2]{Constantinides.jpg}
+                \end{figure}
+                
+            \end{column}
+
+
+        \end{columns}
+    
     \end{frame}
 
-    \section{Introduction}
-    \begin{frame}{Example}
+    \section{Motivating Examples}
+    
+    %Example 1
+    \subsection{Example 1}
+    \begin{frame}{Scheduling Code block 1}
 
         %Put a set of questions here that this work is trying to answer
         \begin{columns}
@@ -60,7 +99,7 @@
 
     \end{frame}
 
-    \begin{frame}{Example}
+    \begin{frame}{Scheduling Code block 2}
 
         %Put a set of questions here that this work is trying to answer
         \begin{columns}
@@ -97,8 +136,7 @@
 
     \end{frame}
 
-
-    \begin{frame}{Example}
+    \begin{frame}{Concurrent scheduling of Block 1 and 2}
 
         %Put a set of questions here that this work is trying to answer
         \begin{columns}
@@ -155,8 +193,8 @@
 
     \end{frame}
 
-    %Example 2
-    \begin{frame}{Example}
+    \subsection{Example 2}
+    \begin{frame}{Scheduling Code block 1}
 
         %Put a set of questions here that this work is trying to answer
         \begin{columns}
@@ -193,7 +231,7 @@
 
     \end{frame}
 
-    \begin{frame}{Example}
+    \begin{frame}{Scheduling Code block 2}
 
         %Put a set of questions here that this work is trying to answer
         \begin{columns}
@@ -231,7 +269,7 @@
     \end{frame}
 
 
-    \begin{frame}{Example}
+    \begin{frame}{Concurrent scheduling of Block 1 and 2}
 
         %Put a set of questions here that this work is trying to answer
         \begin{columns}
@@ -287,7 +325,10 @@
 
     \end{frame}
 
-    \begin{frame}{Problem of Dependencies}
+    \section{Problem}
+
+    \subsection{Dependency}
+    \begin{frame}{Data Dependencies: non-aliasing}
 
 
         \begin{figure}
@@ -304,8 +345,7 @@
         
     \end{frame}
 
-   
-
+    \subsection{SC Dependencies}
     \begin{frame}{Adding WW|WR|RW|RR Dependancies}
 
         \begin{figure}
@@ -350,8 +390,7 @@
         
     \end{frame}
     
-
-
+    \subsection{New Scheduling}
     \begin{frame}{Example}
 
         Without pipelining
@@ -370,6 +409,7 @@
         
     \end{frame}
 
+    \subsection{Rel-Acq Dependencies}
     \begin{frame}{Weakening: Adding Release-Acquire Dependencies}
         
         \begin{figure}
@@ -432,7 +472,7 @@
         
     \end{frame}
 
-    
+    \subsection{New Scheduling}
     \begin{frame}{Example}
 
         Without pipelining
@@ -451,8 +491,10 @@
         
     \end{frame}
 
-    %TEsting on Message passing algorithm
-    \begin{frame}{Testing on Message Passing}
+    \section{Evaluation}
+
+    \subsection{MP Example}
+    \begin{frame}{Message Passing Algorithm}
 
         \begin{figure}
             \makebox[\textwidth][c]{
@@ -463,7 +505,7 @@
     \end{frame}
 
 
-    \begin{frame}{Testing on Message Passing}
+    \begin{frame}{Impact of Modified Scheduling}
 
         \begin{figure}
             \makebox[\textwidth][c]{
@@ -480,7 +522,7 @@
         
     \end{frame}
 
-    \begin{frame}{Pros and Cons}
+    \begin{frame}{Resource Usage}
         \begin{figure}
             \makebox[\textwidth][c]{
                 \includegraphics[scale=0.5]{LUT-Reg-Usage.PNG}
@@ -489,7 +531,38 @@
         
     \end{frame}
 
-    \begin{frame}{Conclusion}
+
+    \subsection{Pros/Cons}
+
+    \begin{frame}{Positives}
+
+        \begin{itemize}
+            \item New scheduling for programs with atomics.
+            \item Do not require locks/notion of critical section for Hardware design.
+            \item Efficient and correct scheduling  
+        \end{itemize}
+
+    \end{frame}
+
+    \begin{frame}{Pending Work}
+
+        \begin{itemize}
+            \item Does not support Atomic Read-Modify-Write instructions. 
+            \item Addressing other potential transformations (eg: Elimination, Introduction, Inlining, etc) for efficient scheduling. 
+        \end{itemize}
+
+    \end{frame}
+
+
+    \begin{frame}{Thank you}
+
+        \begin{itemize}
+            \item \href{https://johnwickerson.wordpress.com/2017/02/23/translating-lock-free-relaxed-concurrency-from-software-into-hardware/}{John's Blog}
+            \item \href{https://dl.acm.org/doi/10.1145/3020078.3021733}{Previous Work}
+            \item \href{https://github.com/nadeshr/weak_atomics}{Testing+Verification}
+        \end{itemize}
+
+        Questions?
 
     \end{frame}
 

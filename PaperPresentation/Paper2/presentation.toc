@@ -1,1 +1,12 @@
-\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {1}{Motivating Examples}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Example 1}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Example 2}{6}{0}{1}
+\beamer@sectionintoc {2}{Problem}{9}{0}{2}
+\beamer@subsectionintoc {2}{1}{Dependency}{9}{0}{2}
+\beamer@subsectionintoc {2}{2}{SC Dependencies}{10}{0}{2}
+\beamer@subsectionintoc {2}{3}{New Scheduling}{12}{0}{2}
+\beamer@subsectionintoc {2}{4}{Rel-Acq Dependencies}{13}{0}{2}
+\beamer@subsectionintoc {2}{5}{New Scheduling}{16}{0}{2}
+\beamer@sectionintoc {3}{Evaluation}{17}{0}{3}
+\beamer@subsectionintoc {3}{1}{MP Example}{17}{0}{3}
+\beamer@subsectionintoc {3}{2}{Pros/Cons}{20}{0}{3}
