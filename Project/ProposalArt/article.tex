@@ -1,0 +1,99 @@
+%Proposal for the project work
+
+\documentclass[sigplan,10pt,review]{acmart}
+\settopmatter{printfolios=true,printccs=false,printacmref=false}
+
+\usepackage{amsmath}
+\usepackage{inputenc}
+
+\title{Constraint driven Scheduling of Weak Memory C programs for HLS}
+
+\begin{document}
+
+    \section{Introduction}
+
+        Scheduling in high level synthesis involves mapping programs to hardware clock cycles. 
+        The resultant schedule determines how fast our program would run on such a synthesized hardware. 
+        
+        We focus on the scheduling problem when it comes to synthesizing hardware for weakly consistent concurrent programs.
+        Previous work addressed this assuming we have infinite resources to synthesize such a hardware. 
+
+        While in practice, this is not the case, we investigate the impact on scheduling given limited hardware resources to map concurrent threads. 
+        We propose a pre-scheduling transformation that merges threads to fit in the resource constraint.
+        We conjecture such a transformation would expose more efficient scheduling opportunities, previously invisible.
+        As merging threads can be done in many combinations, this can result in different schedules.  
+        We propose a global analysis to identify threads which can be merged to give us an efficient schedule among all the possible merges. 
+        We test each(naive and global analysis) of these approaches in our code base, in comparison to previous work done assuming infinite resources. 
+
+        %Simplified version
+        Problem: Scheduling weak memory concurrent programs to clock cycles, given limited hardware resources to map concurrent threads.
+
+        Objectives:
+        \begin{itemize}
+            \item Investigate the impact in scheduling.
+            \item Propose to perform thread inlining transformation to improve scheduling.
+            \item Applying global analysis to choose which threads to inline for efficient schedule.
+        \end{itemize}
+
+
+    \section{Related Work}
+
+        Previous work made a compelling statement that we can synthesize hardware for relaxed atomics.
+        They show how moving from coarse-grained (locks/unlocks) to fine-grained(atomics) concurrency introduces problems in incorrect scheduling of memory accesses.
+        In particular, they link this problem to reordering of memory accesses.
+        Their solution proposed adding more ordering constraints between such accesses based on the atomic access type. 
+        This would enable much more efficient and correct scheduling in comparison to traditional lock based concurrency. 
+        Their follow up work extends this to also schedule pipelined code efficiently.
+        
+        However, they assumed that to have infinite resources to synthesize such programs. 
+        
+        %Simplified version
+        Previous work:
+        1) Proposed mapping pthreads to hardware. 
+        2) Proposed mapping fine grained atomics to hardware.
+        3) Proposed correct scheduling for fine grained atomics being mapped to hardware. 
+        4) Proposed global analysis for better scheduling fine grained atomics.
+
+        Limitation:
+        1) Assume infinite resources.
+        2) Investigate only the aspect of reordering w.r.t. efficient scheduling. 
+
+    \section{Methodology}
+
+        \begin{itemize}
+            \item Constraint the amount of hardware resource available to map threads. 
+            \item Perform thread inlining, choosing randomly pairs of threads to merge, until resource constraint is met.
+            \item Propose and apply a global analysis to better identify pairs of threads to inline.
+            \item Observe the efficiency of resulting schedule.  
+        \end{itemize}
+
+        Benchmark:
+        Existing lock free implementation of Message Passing and Buffers.
+        Handwritten code (to expose an efficient thread inlining pair(s) exist).
+
+        Simulator:
+        Coursework setup augmented with required code to handle fine grained atomics. 
+        Print schedule after scheduling phase. 
+
+        Code to write:
+        Add new AST node for Thread. 
+        Add new "type" parameter for each memory access (read/write). 
+        Augment previous work's ordering constraints to reflect their method of scheduling.
+        Add a transformation step that merges two AST thread nodes. 
+        Add a pre-analysis phase that gives out pairs of threads to merge that will lead to efficient scheduling.
+
+
+    \section{Timeline}
+
+        \begin{itemize}
+            \item Week 1,2: Add AST node Thread and write sample programs to test memory accesses.
+            \item Week 3,4: Add types for each memory access, test benchmark program naive scheduling (incorrect one)
+            \item Week 5: Augment previous work addition to scheduling constraints, test benchmark programs. 
+            \item Week 6: Augment thread resource constraint and merging transformation, test benchmark program schedules.
+            \item Week 7,8: Add algorithm that takes program and gives out set of threads to inline, test benchmark program schedules.
+            \item Week 9: Report results.
+        \end{itemize}
+
+
+
+\end{document}
