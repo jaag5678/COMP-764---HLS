@@ -1,14 +1,32 @@
 %Proposal for the project work
 
 \documentclass[sigplan,10pt,review]{acmart}
-\settopmatter{printfolios=true,printccs=false,printacmref=false}
+%\settopmatter{printfolios=true,printccs=false,printacmref=false}
+
+
 
 \usepackage{amsmath}
 \usepackage{inputenc}
 
+\setcopyright{acmcopyright}
+\copyrightyear{2022}
+\acmYear{2022}
+\acmDOI{}
+
+
+\acmConference[COMP 764]{XYZ}{Winter 2022}{Montreal, Quebec, Canada}
+
+\acmBooktitle{Yay book} 
+\acmPrice{Free}
+\acmISBN{}
+
 
 
 \title{Constraint driven Scheduling of fine-grained C concurrency for Reconfigurable Hardware}
+\author{Akshay Gopalakrishnan}
+\affiliation{McGill University}
+\email{akshay.akshay@mail.mcgill.ca}
+\date{today}
 
 \begin{document}
 
@@ -18,19 +36,19 @@
 
         %What is Reconfigurable Hardware
         %What is HLS
-        High Level Synthesis(HLS) is a process of mapping high level(C-like programs) models of hardware to low level concrete (HLD-like programs) ones; which is then synthesized as hardwares like FPGAs.
-        HLS tools are used widespread in recent times due to the high demand for specialized hardware than can perform better for specific Machine Learning applications.  
+        High Level Synthesis(HLS) is a process of mapping behavioral(C-like programs) models of hardware to low level(HDL-like programs) ones; which are then synthesized as specialized hardwares(eg: FPGA, ASIC).
+        HLS tools are used widespread in recent times due to the high demand for such specialized hardware than have better throughput and energy consumption for specific intensive computations(eg: in Machine Learning).  
         
-        The past decades have also progressed in better understanding how to better utilize multicore machines for several applications. 
-        Specifically, the use of fine grained concurrent features (eg: Load/Store buffers, speculation,etc.); whose descriptions are termed as relaxed memory consistency models.
+        The past decades have also progressed in better utilization of multicore machines for several concurrent applications. 
+        Specifically, the use of fine grained concurrent features (eg: Load/Store buffers, speculation,etc.); whose descriptions are given by relaxed memory consistency models.
 
-        Our focus is in the marriage of scheduling in HLS and such fine grained concurrent programs that can be used to synthesize hardware. 
+        Our focus is in scheduling of such fine grained concurrent programs that are synthesized to hardware. 
         Scheduling is a phase in HLS wherein programs (models) are mapped to hardware clock cycles. 
         The schedule determines how many clock cycles would it take for a computation to be done on the hardware synthesized. 
         
         %Scheduling for Concurrent Programs
-        We specifically look at the impact on scheduling such programs given a constraint on number of hardware resources available to map concurrent processes"threads".
-        Our contribution in this direction three fold:
+        We specifically look at the impact on scheduling such programs in C given a constraint on number of hardware resources available to map concurrent processes(threads).
+        Our contribution is three fold:
         \begin{itemize}
             \item Investigate the impact in scheduling such programs given thread resource constraint.
             \item Implement pre-scheduling optimization to improve the overall schedule.
@@ -40,57 +58,51 @@
 
     \section{Related Work}
 
-        \cite{DBLP:conf/fpt/ChoiBA13} show how to map software threads to parallel hardware for FPGAs. 
+        \cite{DBLP:conf/fpt/ChoiBA13} propose a method to map software threads to parallel hardware for FPGAs. 
         They do this for programs that utilize pthreads and OpenMP constructs.
-        However, their focus was mainly on lock based concurrency in C. 
-        While they do note in their experiments that having a constraint on resources to map threads does effect the schedule(more cycles), they do not investigate if any optimization pre-scheduling can be done to improve this. 
+        However, their focus was mainly on lock-based concurrency in C. 
+        However, they do note in their experiments that having a constraint on resources to map threads does effect the schedule(more cycles). 
 
-        \cite{DBLP:conf/fpga/RamanathanFWC17} and \cite{DBLP:journals/tc/RamanathanWC18} address the scheduling problem for synthesis of concurrent programs utilizing fine grained concurrency elements of C.
-        They show that while using atomics primitives provided by C, incorrect schedules can be obtained.
+        \cite{DBLP:conf/fpga/RamanathanFWC17} investigate the synthesis of concurrent programs utilizing fine grained concurrency elements of C.
+        They show that on using atomics primitives provided by C, incorrect schedules can be obtained.
         They remedy this by adding additional ordering constraints among memory accesses.
-        They also implement pipelined scheduling for such programs.
-
+        \cite{DBLP:journals/tc/RamanathanWC18} is a follow up to this work implementing pipelined scheduling for such programs.
+        
         %Put optimization thing here
         \cite{DBLP:conf/lcpc/CongLPZ12} and \cite{DBLP:conf/fccm/HuangLCCXBA13} show the impact/effect of compiler optimizations on HLS for Reconfigurable hardware like FPGAs.
         Specifically, they show how scheduling(termed as latency) has a major impact due the optimization passes of the compiler, as well as the order in which we perform it. 
         But their work does not address this impact on concurrent programs(let alone those using fine grained Concurrency) synthesized to hardware. 
 
-        \cite{DBLP:conf/popl/VafeiadisBCMN15} shows that programs utilizing fine grained concurrency of C may not get the benefit of some optimizations as they are rendered unsafe in a concurrent context. 
-        
+        While we do want to perform the same set of optimizations for concurrent models, we are constrained by the semantics of such programs.
+        \cite{DBLP:conf/popl/VafeiadisBCMN15} shows that programs utilizing fine grained concurrency of C do not get the benefit of some optimizations as they are rendered unsafe in a concurrent context. 
         \cite{DBLP:conf/fccm/RamanathanCW18} try to identify which memory accesses can be safely reordered in a weakly consistent C program targeted for hardware synthesis.
-        Their goal is again to improve the overall schedule of the program, and in turn the hardware that is synthesized for it. 
-        \cite{DBLP:journals/tvlsi/RamanathanCW21} is a follow up to this work describing a global analysis to more aggressively perform such reordering.
-        This reordering resulted in a better schedule overall.
+        Their goal was to improve the overall schedule of the program, and in turn the hardware that is synthesized for it. 
+        \cite{DBLP:journals/tvlsi/RamanathanCW21} is a follow up to this work describing a global analysis to more aggressively perform safe reorderings of memory accesses for the same purpose.
 
         Previous works in the line of synthesizing weakly consistent C programs assume that every thread can be mapped to a unique hardware accelerator during synthesis. 
-        They do not investigate the effect of constraining the number of available accelerators, and whether any optimization can be done for this to improve the schedule.
+        They do not investigate the effect of constraining the number of available accelerators.
+        And while reordering was proposed in this line to improve schedules, no investigation was done on whether any optimization can be done to improve schedules under the constraint of available hardware to map threads.
 
     \section{Methodology}
 
         In the presence is resource constraint for mapping threads to hardware, more than one thread's code will have to be run by the same hardware resource.
-        This brings about an interleaving behavior between those threads, which is coupled by "context switching" to ensure each thread's code is executed.
-        This "context switching" will cost more cycles, and overall would lead to an inefficient schedule.
+        This brings about an interleaving behavior between those threads, with an added overhead to switch from on thread's code to another.
+        This ``context switching" will cost more hardware clock cycles; leading to an inefficient schedule.
 
-        Sequentialization is a compiler transformation that merges two threads by placing one thread's code after another. 
-        \cite{DBLP:journals/pcs/MoiseenkoPK21} have thankfully recorded that sequentialization can be done safely for weakly consistent C programs (given the recent C11 memory consistency model).
-        We propose to augment this optimization in pre-scheduling stage given constraints on hardware resources for threads.
+        Sequentialisation is a compiler transformation that combines two or more threads by placing each other's code blocks in a sequential order. 
+        \cite{DBLP:journals/pcs/MoiseenkoPK21} have recorded that such a transformation can be done safely for weakly consistent C programs, given the recent memory consistency model.
+        We propose to augment this optimization in pre-scheduling stage of HLS with the added constraint on hardware resources to map threads.
 
-        Such a transformation for our purpose would at first sight, save the context switching overhead when it comes to scheduling more than one concurrent thread to a hardware resource. 
-        We plan on adding this transformation before scheduling our programs to address the "context switching" overhead. 
-
-        Traditional lock based concurrency would only benefit from the saving of "context switch" cycles when it comes to scheduling shared memory accesses.
+        For our purpose, such a transformation  would save firstly, the context-switching overhead.
+        Traditional lock based concurrency would only benefit from saving clock cycles from this overhead of context-switch when it comes to scheduling shared-memory accesses.
         But we note, from previous work's observation, that our transformation would benefit more if we have fine grained concurrent elements. 
-        Merging two thread's code can expose more memory accesses that are independent and can be scheduled in the same clock cycle. 
-        Additionally, taking motivation from previous work, we also would like to identify a global analysis to better perform this optimization. 
+        Merging two thread's code can expose more shared-memory accesses that are independent and have no ordering constraints. Thus, they can be scheduled in the same clock cycle. 
+        Additionally, taking motivation from previous work, it would also benefit to identify a global analysis to better perform this optimization. 
         
-        In our current work, we will only show how this transformation in unison with reordering improves the schedule.
-        But it is important to note that several other optimizations can also further give us a better scheduled circuit.
-        We leave this analysis as part of future work.
-
-        For our contribution, we use our existing code base which synthesizes a subset of C like sequential program to hardware level VHDL language. 
-        We extend our code base to incorporate the notion of threads, followed by augumenting it with weakly consistent memory accesses from previous work. 
-        We then place a constraint on the resource count for threads and observe the schedule that results due to previous work. 
-        We then augment our naive version of transformation that performs sequentialization before scheduling.
+        For our contribution, we use our existing code base which synthesizes a subset of C like sequential program to VHDL language. 
+        We extend our code base to incorporate the notion of threads, followed by augmenting it with weakly consistent memory accesses from previous work. 
+        We then place a constraint on the resource count for mapping threads and observe the schedule that results due to previous work. 
+        We then augment our naive version of transformation that performs sequentialisation before scheduling.
         We also then add a pre-analysis step for this transformation that results in a more efficient merging of threads which result in a better schedule.  
         We analyze the impact of our two approaches to previous work on the resultant schedule(s) obtained.
         For this, we utilize the benchmarks used in previous work, along with adding our own custom made programs which can expose the importance of the pre-analysis step.  
@@ -98,23 +110,28 @@
         \begin{itemize}
             \item Encode previous work's contribution to our existing code base.
             \item Constrain the amount of hardware resources available to map threads. 
-            \item Augment sequentialization transformation, that chooses random pairs of threads to merge, until we can uniquely map each thread to a resource.
-            \item Add a global-analysis step to better identify pairs of threads to sequentialize.
+            \item Augment sequentialisation transformation, that chooses random pairs of threads to merge, until we can uniquely map each thread to a resource.
+            \item Add a global-analysis step to better identify pairs of threads to sequentialise.
             \item Observe the outcome of the resulting schedule on lock free algorithms of message-passing and producer-consumer problems.
-            \item Observe the outcome of the resulting schedule on custom written lock free programs.  
+            \item Observe the outcome of the resulting schedule on custom-written lock free programs.  
         \end{itemize}
-
+        
         Note that our current contributions are only restricted upto the scheduling stage on HLS.
-        As part of our future work, we would like to incorporate our contribution to existing HLS tools like LegUp, that can synthesize concurrent models like ours to hardware.
+        In addition, we consider our programs to not have loops/conditionals.
+        As part of our future work, we would like to firstly extend this to add features of loops and conditionals, followed by incorporating our work in existing HLS tools like LegUp, that can synthesize concurrent C models to hardware.
+
+        In our current work, we will only show how this transformation in unison with reordering(from previous work) improves the schedule.
+        But it is important to note that several other optimizations in unison can further give us a better scheduled circuit.
+        We leave this analysis as part of future work.
 
     \section{Timeline}
 
         \begin{itemize}
-            \item Week 1,2: Add AST node Thread and write sample programs to test scheduling of memory accesses.
-            \item Week 3: Add types for each memory access, test benchmark program naive scheduling (incorrect one).
+            \item Week 1: Add AST node Thread and write sample programs to test scheduling of memory accesses.
+            \item Week 2,3: Add memory ordering types for each memory access, test benchmark program naive scheduling (incorrect one).
             \item Week 5: Augment previous work addition to scheduling constraints, test benchmark programs. 
             \item Week 6: Augment thread resource constraint and merging transformation, test benchmark program schedules.
-            \item Week 7,8: Add algorithm that takes program and gives out set of threads to inline, test benchmark program schedules.
+            \item Week 7,8: Add global analysis to improve sequentialisation, test benchmark program schedules.
             \item Week 9: Report results.
         \end{itemize}
 
