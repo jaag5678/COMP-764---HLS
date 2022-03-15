@@ -4,7 +4,7 @@ use IEEE.numeric_std.all;
 
 entity ex1 is 
 port ( 
-clk: IN std_logic;
+clk_f: IN std_logic;
 q: OUT integer
 );
 end ex1;
@@ -64,22 +64,26 @@ begin
 r0 <= dout_mem when sel_mem <= 0;
 r1 <= dout_mem when sel_mem <= 1;
 r3 <= dout_mem when sel_mem <= 2;
-mem: int32dualportRAM port map(clk, we_mem, aw_mem, ar_mem, din_mem, dout_mem);
+mem: int32dualportRAM port map(clk_f, we_mem, aw_mem, ar_mem, din_mem, dout_mem);
 
 iA0_0 <= r2 when sel_A0 <= 0 ;
 iA0_1 <= r3 when sel_A0 <= 0 ;
 r4 <= oA0 when sel_A0 <= 0;
+
 A0: int32add port map(iA0_0, iA0_1, oA0);
+
 iM0_0 <= r0 when sel_M0 <= 0 ;
 iM0_1 <= r1 when sel_M0 <= 0 ;
 r2 <= oM0 when sel_M0 <= 0;
+
 M0: int32mult port map(iM0_0, iM0_1, oM0);
 
 
-process(clk)
+
+process(clk_f)
 begin
 
-if (clk'event and clk='1') then 
+if (clk_f'event and clk_f='1') then 
 if (state = 0) then 
 ar_mem <= std_logic_vector(to_unsigned(0, 32));
 sel_mem <= 0;

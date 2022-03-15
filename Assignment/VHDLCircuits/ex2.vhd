@@ -4,7 +4,7 @@ use IEEE.numeric_std.all;
 
 entity ex2 is 
 port ( 
-clk: IN std_logic;
+clk_f: IN std_logic;
 q: OUT integer
 );
 end ex2;
@@ -59,15 +59,15 @@ r0 <= dout_A when sel_A <= 0;
 r3 <= dout_A when sel_A <= 1;
 r6 <= dout_A when sel_A <= 2;
 r9 <= dout_A when sel_A <= 3;
-A: int32dualportRAM port map(clk, we_A, aw_A, ar_A, din_A, dout_A);
+A: int32dualportRAM port map(clk_f, we_A, aw_A, ar_A, din_A, dout_A);
 
 r1 <= dout_B when sel_B <= 0;
 r4 <= dout_B when sel_B <= 1;
 r7 <= dout_B when sel_B <= 2;
 r10 <= dout_B when sel_B <= 3;
-B: int32dualportRAM port map(clk, we_B, aw_B, ar_B, din_B, dout_B);
+B: int32dualportRAM port map(clk_f, we_B, aw_B, ar_B, din_B, dout_B);
 
-C: int32dualportRAM port map(clk, we_C, aw_C, ar_C, din_C, dout_C);
+C: int32dualportRAM port map(clk_f, we_C, aw_C, ar_C, din_C, dout_C);
 
 iM0_0 <= r0 when sel_M0 <= 0 else 
 r3 when sel_M0 <= 1 else 
@@ -84,10 +84,10 @@ r11 <= oM0 when sel_M0 <= 3;
 M0: int32mult port map(iM0_0, iM0_1, oM0);
 
 
-process(clk)
+process(clk_f)
 begin
 
-if (clk'event and clk='1') then 
+if (clk_f'event and clk_f='1') then 
 if (state = 0) then 
 ar_A <= std_logic_vector(to_unsigned(0, 32));
 sel_A <= 0;

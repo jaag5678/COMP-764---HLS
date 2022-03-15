@@ -30,8 +30,8 @@ end int32dualportRAM;
 
 --specification 
 architecture dpRAM of int32dualportRAM is
-	
-	type ram_type is array (2 ** addr_width - 1 downto 0) of integer;
+	--2 ** addr_width - 1
+	type ram_type is array ((7) downto 0) of integer;
 	signal ram_dual_port: ram_type;
 
 begin

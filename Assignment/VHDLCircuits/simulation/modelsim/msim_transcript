@@ -10,41 +10,84 @@
 # Copying E:/IntelQuartus/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
 # Modifying modelsim.ini
 # 
-# vcom -93 -work work {C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/int32dualportRAM.vhd}
+# vcom -93 -work work {C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32add.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 22:55:20 on Jan 31,2022
-# vcom -reportprogress 300 -93 -work work C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/int32dualportRAM.vhd 
+# Start time: 10:44:32 on Feb 10,2022
+# vcom -reportprogress 300 -93 -work work C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32add.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity int32add
+# -- Compiling architecture add32_type0 of int32add
+# End time: 10:44:32 on Feb 10,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32mult.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:44:32 on Feb 10,2022
+# vcom -reportprogress 300 -93 -work work C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32mult.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_SIGNED
+# -- Loading package NUMERIC_STD
+# -- Compiling entity int32mult
+# -- Compiling architecture mult32_type0 of int32mult
+# End time: 10:44:32 on Feb 10,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vcom -93 -work work {C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32dualportRAM.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:44:32 on Feb 10,2022
+# vcom -reportprogress 300 -93 -work work C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32dualportRAM.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package NUMERIC_STD
 # -- Compiling entity int32dualportRAM
 # -- Compiling architecture dpRAM of int32dualportRAM
-# End time: 22:55:20 on Jan 31,2022, Elapsed time: 0:00:00
+# End time: 10:44:32 on Feb 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-# 
-# vcom -93 -work work {C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/testbench_int32dualportRAM.vhd}
+# vcom -93 -work work {C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/ex4.vhd}
 # Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 22:55:20 on Jan 31,2022
-# vcom -reportprogress 300 -93 -work work C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/testbench_int32dualportRAM.vhd 
+# Start time: 10:44:32 on Feb 10,2022
+# vcom -reportprogress 300 -93 -work work C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/ex4.vhd 
 # -- Loading package STANDARD
 # -- Loading package TEXTIO
 # -- Loading package std_logic_1164
 # -- Loading package NUMERIC_STD
-# -- Compiling entity testbench_int32dualportRAM
-# -- Compiling architecture tb of testbench_int32dualportRAM
-# End time: 22:55:20 on Jan 31,2022, Elapsed time: 0:00:00
+# -- Compiling entity ex4
+# -- Compiling architecture hls of ex4
+# End time: 10:44:32 on Feb 10,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  testbench_int32dualportRAM
-# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" testbench_int32dualportRAM 
-# Start time: 22:55:20 on Jan 31,2022
+# vcom -93 -work work {C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/test_ex4.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 10:44:32 on Feb 10,2022
+# vcom -reportprogress 300 -93 -work work C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/test_ex4.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity test_ex4
+# -- Compiling architecture tb of test_ex4
+# End time: 10:44:32 on Feb 10,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs="+acc"  test_ex4
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cyclonev -L rtl_work -L work -voptargs=""+acc"" test_ex4 
+# Start time: 10:44:33 on Feb 10,2022
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
 # Loading ieee.numeric_std(body)
-# Loading work.testbench_int32dualportram(tb)
+# Loading work.test_ex4(tb)
+# Loading work.ex4(hls)
 # Loading work.int32dualportram(dpram)
+# Loading work.int32add(add32_type0)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_signed(body)
+# Loading work.int32mult(mult32_type0)
 # 
 # add wave *
 # view structure
@@ -53,10 +96,64 @@
 # .main_pane.objects.interior.cs.body.tree
 # run -all
 # ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
-#    Time: 0 ps  Iteration: 0  Instance: /testbench_int32dualportram/DUT
-# ** Error: Fail to read
-#    Time: 2 ns  Iteration: 0  Instance: /testbench_int32dualportram
-# ** Note: testing done
-#    Time: 2500 ps  Iteration: 0  Instance: /testbench_int32dualportram
-# End time: 22:55:43 on Jan 31,2022, Elapsed time: 0:00:23
-# Errors: 1, Warnings: 1
+#    Time: 0 ps  Iteration: 0  Instance: /test_ex4/DUT/C
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /test_ex4/DUT/W
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /test_ex4/DUT/A
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 13 ns  Iteration: 2  Instance: /test_ex4/DUT/C
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 19 ns  Iteration: 2  Instance: /test_ex4/DUT/C
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 25 ns  Iteration: 2  Instance: /test_ex4/DUT/C
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 31 ns  Iteration: 2  Instance: /test_ex4/DUT/C
+add wave -position insertpoint sim:/test_ex4/DUT/A/*
+add wave -position insertpoint sim:/test_ex4/DUT/W/*
+add wave -position insertpoint sim:/test_ex4/DUT/C/*
+mem load -filltype value -filldata 100 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(0)
+mem load -filltype value -filldata 101 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(1)
+mem load -filltype value -filldata 102 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(2)
+mem load -filltype value -filldata 103 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(3)
+mem load -filltype value -filldata 104 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(4)
+mem load -filltype value -filldata 105 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(5)
+mem load -filltype value -filldata {106 } -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(6)
+mem load -filltype value -filldata 107 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(7)
+mem load -filltype value -filldata 1 -fillradix symbolic /test_ex4/DUT/W/ram_dual_port(0)
+mem load -filltype value -filldata 2 -fillradix symbolic /test_ex4/DUT/W/ram_dual_port(1)
+mem load -filltype value -filldata 1 -fillradix symbolic /test_ex4/DUT/W/ram_dual_port(2)
+restart -f
+restart -f
+restart -f
+mem load -filltype value -filldata 100 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(0)
+mem load -filltype value -filldata 101 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(1)
+mem load -filltype value -filldata 102 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(2)
+mem load -filltype value -filldata 103 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(3)
+mem load -filltype value -filldata 104 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(4)
+mem load -filltype value -filldata 105 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(5)
+mem load -filltype value -filldata 106 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(6)
+mem load -filltype value -filldata 107 -fillradix symbolic /test_ex4/DUT/A/ram_dual_port(7)
+mem load -filltype value -filldata 1 -fillradix symbolic /test_ex4/DUT/W/ram_dual_port(0)
+mem load -filltype value -filldata 2 -fillradix symbolic /test_ex4/DUT/W/ram_dual_port(1)
+mem load -filltype value -filldata 1 -fillradix symbolic /test_ex4/DUT/W/ram_dual_port(2)
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /test_ex4/DUT/C
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /test_ex4/DUT/W
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /test_ex4/DUT/A
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 13 ns  Iteration: 2  Instance: /test_ex4/DUT/C
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 19 ns  Iteration: 2  Instance: /test_ex4/DUT/C
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 25 ns  Iteration: 2  Instance: /test_ex4/DUT/C
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 31 ns  Iteration: 2  Instance: /test_ex4/DUT/C
+# End time: 10:59:03 on Feb 10,2022, Elapsed time: 0:14:30
+# Errors: 0, Warnings: 14

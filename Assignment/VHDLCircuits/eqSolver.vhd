@@ -13,7 +13,7 @@ use IEEE.numeric_std.all;
 entity eqSolver is
 	port (
 	--since the solver works on clock cycles, we need clock
-	clk: IN std_logic;
+	clk_eq: IN std_logic;
 	--inputs can be the address locations from where to read/write 
 	lr0: IN std_logic_vector (1 downto 0);
 	lr1: IN std_logic_vector (1 downto 0);
@@ -75,14 +75,14 @@ architecture calc_circuit of eqSolver is
 	
 	begin
 	
-		ram: int32dualportRAM port map(clk, we0, aw, ar, ri, ro);
+		ram: int32dualportRAM port map(clk_eq, we0, aw, ar, ri, ro);
 		mult0: int32mult port map(e0, e1, res_prod);
 		adder0: int32add port map(prod01, e2, res_sum);
 	
-		process (clk)
+		process (clk_eq)
 		begin	
 		
-		if (clk'event and clk='1') then
+		if (clk_eq'event and clk_eq='1') then
 			if(state = 0) then
 				--read from location 0
 				ar <= std_logic_vector(signed(lr0));

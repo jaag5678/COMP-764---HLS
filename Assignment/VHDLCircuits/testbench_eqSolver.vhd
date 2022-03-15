@@ -12,7 +12,7 @@ architecture tb of testbench_eqSolver is
 	
 	component eqSolver is
 		port (
-			clk: IN std_logic;
+			clk_eq: IN std_logic;
 			lr0: IN std_logic_vector (1 downto 0);
 			lr1: IN std_logic_vector (1 downto 0);
 			lr2: IN std_logic_vector (1 downto 0);

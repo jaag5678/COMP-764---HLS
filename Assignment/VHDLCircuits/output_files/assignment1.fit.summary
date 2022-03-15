@@ -1,12 +1,12 @@
-Fitter Status : Successful - Fri Feb 04 15:09:46 2022
+Fitter Status : Successful - Wed Feb 09 18:29:49 2022
 Quartus Prime Version : 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 Revision Name : assignment1
-Top-level Entity Name : ex4_cse
+Top-level Entity Name : ex4
 Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 1 / 32,070 ( < 1 % )
-Total registers : 0
+Logic utilization (in ALMs) : 3 / 32,070 ( < 1 % )
+Total registers : 7
 Total pins : 33 / 457 ( 7 % )
 Total virtual pins : 0
 Total block memory bits : 0 / 4,065,280 ( 0 % )

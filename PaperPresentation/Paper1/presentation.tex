@@ -3,9 +3,14 @@
 
 \usetheme{Berkeley}
 
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{headline}{}
+
+
 \usepackage{inputenc}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{hyperref}
 
 \title{Finding and Understanding Bugs in FPGA Synthesis Tools}
 \subtitle{Yann Herklotz, John Wickerson}
@@ -390,10 +395,11 @@
     \begin{frame}{Cons?}
         
         \begin{itemize}
-            \item Cannot identify bugs at syntax and semantic parts of HLS. 
+            \item Cannot identify bugs at semantic parts of HLS. 
             \item Reduction process halves modules/outputs. 
             \item Does not work for Verilog code based on undefined values. 
-            \item Bug examples in paper seem to only circulate around incorrect assignment of array widths after operations. 
+            \item Bug examples in paper seem to only circulate around incorrect assignment of bit widths after operations.
+            \item Identifying cases that represent the "same" bug (not clear).  
         \end{itemize}
 
     \end{frame}
@@ -402,14 +408,25 @@
         \begin{itemize}
             \item Perhaps a better way is to build a dependency tree of all vars/nets and remove mostly connected nodes.  
             \item Perhaps the optimizations should not rely on undefined values to be aggressive like C11.
-            \item There could be other forms of bugs, but do they detect them too? 
+            \item There could be other forms of bugs, but do they detect them too?
+            \item The paper does not pinpoint on specific optimizations that cause the bug, only that the bug exists. 
+            \item Perhaps isolation of a set of transformations and testing for bugs under their influence would be beneficial.
         \end{itemize}
     }
 
     \begin{frame}{Thank you!}
 
+        Some useful links:
+        \begin{itemize}
+            \item \href{https://johnwickerson.wordpress.com/2019/11/22/fuzzing-fpga-synthesis-tools/}{John's Blog}
+            \item \href{https://johnwickerson.github.io/talks/verismith_27nov2019.pdf}{Presentation by John}
+            \item \href{https://github.com/ymherklotz/verismith/tree/fpga20}{Verismith tool}
+        \end{itemize}
+        
         Questions?
         
+
+
     \end{frame}
 
 

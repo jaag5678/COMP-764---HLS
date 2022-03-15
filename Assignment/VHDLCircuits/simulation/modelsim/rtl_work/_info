@@ -7,38 +7,38 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/simulation/modelsim
-Eint32dualportram
-Z1 w1642698378
+Z0 dC:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/simulation/modelsim
+Eex4
+Z1 w1644456620
 Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 R0
-Z5 8C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/int32dualportRAM.vhd
-Z6 FC:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/int32dualportRAM.vhd
+Z5 8C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/ex4.vhd
+Z6 FC:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/ex4.vhd
 l0
-L17
-V@?Z1Pj[Fl5WK_eOY?aaze1
-!s100 N;9JZYGfgAao>9ZhiV?UW1
+L5
+V8L?BLXWD2m:E8odZO4H401
+!s100 md[g<c7^n02DEdW>:CIHK3
 Z7 OV;C;10.5b;63
 31
-Z8 !s110 1643687720
+Z8 !s110 1644507872
 !i10b 1
-Z9 !s108 1643687720.000000
-Z10 !s90 -reportprogress|300|-93|-work|work|C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/int32dualportRAM.vhd|
-Z11 !s107 C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/int32dualportRAM.vhd|
+Z9 !s108 1644507872.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/ex4.vhd|
+Z11 !s107 C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/ex4.vhd|
 !i113 1
 Z12 o-93 -work work
 Z13 tExplicit 1 CvgOpt 0
-Adpram
+Ahls
 R2
 R3
 R4
-DEx4 work 16 int32dualportram 0 22 @?Z1Pj[Fl5WK_eOY?aaze1
-l37
-L32
-VEBVR>Ld?m3X:J0l2cKOCL2
-!s100 ?8kKSZIS3U=Y@;8SR@QQ=0
+DEx4 work 3 ex4 0 22 8L?BLXWD2m:E8odZO4H401
+l63
+L12
+VSUlSoYc0;9LK=K7ElZ@`Q3
+!s100 ;N9<G:WeOTOk>Fa6J6Bn_3
 R7
 31
 R8
@@ -49,37 +49,37 @@ R11
 !i113 1
 R12
 R13
-Etestbench_int32dualportram
-Z14 w1643687605
+Eint32add
+Z14 w1642623475
 R2
 R3
 R4
 R0
-Z15 8C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/testbench_int32dualportRAM.vhd
-Z16 FC:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/testbench_int32dualportRAM.vhd
+Z15 8C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32add.vhd
+Z16 FC:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32add.vhd
 l0
-L7
-V4j0aWJmICVVJail0PDBDM3
-!s100 mh@zn`iUVge91iBkBXeoZ2
+L9
+V9;4QYJOjH^N^:D[z?@R5o1
+!s100 n?DDoLi>nijd;]h^A0?ST3
 R7
 31
 R8
 !i10b 1
 R9
-Z17 !s90 -reportprogress|300|-93|-work|work|C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/testbench_int32dualportRAM.vhd|
-Z18 !s107 C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/VHDLCircuits/testbench_int32dualportRAM.vhd|
+Z17 !s90 -reportprogress|300|-93|-work|work|C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32add.vhd|
+Z18 !s107 C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32add.vhd|
 !i113 1
 R12
 R13
-Atb
+Aadd32_type0
 R2
 R3
 R4
-DEx4 work 26 testbench_int32dualportram 0 22 4j0aWJmICVVJail0PDBDM3
-l34
-L12
-V;`[F5Q4PfS_A`JN>i;f`f0
-!s100 3?UaJ_OHYZCgb8?ok_CEW3
+DEx4 work 8 int32add 0 22 9;4QYJOjH^N^:D[z?@R5o1
+l19
+L18
+V];7KdlOIeJc^g^7HR__gM2
+!s100 =g4;D^W?6b6B9Q=af89F]3
 R7
 31
 R8
@@ -87,6 +87,133 @@ R8
 R9
 R17
 R18
+!i113 1
+R12
+R13
+Eint32dualportram
+Z19 w1644445642
+R2
+R3
+R4
+R0
+Z20 8C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32dualportRAM.vhd
+Z21 FC:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32dualportRAM.vhd
+l0
+L17
+V@?Z1Pj[Fl5WK_eOY?aaze1
+!s100 N;9JZYGfgAao>9ZhiV?UW1
+R7
+31
+R8
+!i10b 1
+R9
+Z22 !s90 -reportprogress|300|-93|-work|work|C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32dualportRAM.vhd|
+Z23 !s107 C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32dualportRAM.vhd|
+!i113 1
+R12
+R13
+Adpram
+R2
+R3
+R4
+DEx4 work 16 int32dualportram 0 22 @?Z1Pj[Fl5WK_eOY?aaze1
+l37
+L32
+VV7:JmoK2z^Da@1HH<R[SQ1
+!s100 SCLn5N@JVJ5;`W?R@jmS70
+R7
+31
+R8
+!i10b 1
+R9
+R22
+R23
+!i113 1
+R12
+R13
+Eint32mult
+Z24 w1642623415
+R2
+Z25 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z26 DPx4 ieee 16 std_logic_signed 0 22 C<aanc0R`<LWPSe[JYRP^3
+R3
+R4
+R0
+Z27 8C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32mult.vhd
+Z28 FC:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32mult.vhd
+l0
+L9
+V:HC9C>:k8`eoG_YXO3N[f3
+!s100 b<d;@95=QzIMAm<Rm3Ac>3
+R7
+31
+R8
+!i10b 1
+R9
+Z29 !s90 -reportprogress|300|-93|-work|work|C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32mult.vhd|
+Z30 !s107 C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/int32mult.vhd|
+!i113 1
+R12
+R13
+Amult32_type0
+R2
+R25
+R26
+R3
+R4
+DEx4 work 9 int32mult 0 22 :HC9C>:k8`eoG_YXO3N[f3
+l20
+L18
+VY`lf@2W=dMe8N6EOIY3Ag3
+!s100 Be=7okl]bFLG^o2SB@Nj@0
+R7
+31
+R8
+!i10b 1
+R9
+R29
+R30
+!i113 1
+R12
+R13
+Etest_ex4
+Z31 w1644445204
+R2
+R3
+R4
+R0
+Z32 8C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/test_ex4.vhd
+Z33 FC:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/test_ex4.vhd
+l0
+L9
+VPeAkk?kS[OD[LRC_:?_?02
+!s100 :@?;^l?zYQZY<0VPD50cR3
+R7
+31
+R8
+!i10b 1
+R9
+Z34 !s90 -reportprogress|300|-93|-work|work|C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/test_ex4.vhd|
+Z35 !s107 C:/Users/jaag5/OneDrive - McGill University/Study/Courses-Attended/COMP764-HighLevelSynthesis/COMP-764---HLS/Assignment/VHDLCircuits/test_ex4.vhd|
+!i113 1
+R12
+R13
+Atb
+R2
+R3
+R4
+DEx4 work 8 test_ex4 0 22 PeAkk?kS[OD[LRC_:?_?02
+l25
+L13
+V`Z8RLW_EMUSM>M_L]<cNo1
+!s100 J>UCH^8iobK5[<lPcMcU92
+R7
+31
+R8
+!i10b 1
+R9
+R34
+R35
 !i113 1
 R12
 R13
