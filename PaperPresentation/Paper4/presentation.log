@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.3.14)  14 MAR 2022 20:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.3.14)  15 MAR 2022 13:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -838,6 +838,129 @@ Dictionary: translator-theorem-dictionary, Language: English
 ] [3
 
 ]
+<ReverseEng.PNG, id=128, 273.4215pt x 105.996pt>
+File: ReverseEng.PNG Graphic file (type png)
+<use ReverseEng.PNG>
+Package pdftex.def Info: ReverseEng.PNG  used on input line 74.
+(pdftex.def)             Requested size: 164.05414pt x 63.59807pt.
+
+Overfull \hbox (18.68283pt too wide) in paragraph at lines 74--74
+ [] 
+ []
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 74.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 74.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+<TrojanEx.PNG, id=130, 273.4215pt x 144.54pt>
+File: TrojanEx.PNG Graphic file (type png)
+<use TrojanEx.PNG>
+Package pdftex.def Info: TrojanEx.PNG  used on input line 74.
+(pdftex.def)             Requested size: 164.05414pt x 86.72466pt.
+
+Overfull \hbox (18.68283pt too wide) in paragraph at lines 74--74
+ [] 
+ []
+
+[4
+
+ <./ReverseEng.PNG> <./TrojanEx.PNG>]
+<State_Lock.PNG, id=165, 495.65175pt x 118.041pt>
+File: State_Lock.PNG Graphic file (type png)
+<use State_Lock.PNG>
+Package pdftex.def Info: State_Lock.PNG  used on input line 90.
+(pdftex.def)             Requested size: 297.39334pt x 70.82513pt.
+
+Overfull \hbox (6.65071pt too wide) in paragraph at lines 90--90
+ [] 
+ []
+
+[5
+
+ <./State_Lock.PNG>] [6
+
+] [7
+
+]
+<HLockOverview.PNG, id=258, 251.13824pt x 178.266pt>
+File: HLockOverview.PNG Graphic file (type png)
+<use HLockOverview.PNG>
+Package pdftex.def Info: HLockOverview.PNG  used on input line 118.
+(pdftex.def)             Requested size: 251.13763pt x 178.26555pt.
+ [8
+
+ <./HLockOverview.PNG>]
+<LockingCandidates.PNG, id=290, 194.52675pt x 78.89474pt>
+File: LockingCandidates.PNG Graphic file (type png)
+<use LockingCandidates.PNG>
+Package pdftex.def Info: LockingCandidates.PNG  used on input line 126.
+(pdftex.def)             Requested size: 194.52626pt x 78.89453pt.
+ [9
+
+ <./LockingCandidates.PNG>]
+<BranchObfuscation.PNG, id=322, 251.7405pt x 145.14224pt>
+File: BranchObfuscation.PNG Graphic file (type png)
+<use BranchObfuscation.PNG>
+Package pdftex.def Info: BranchObfuscation.PNG  used on input line 134.
+(pdftex.def)             Requested size: 251.73987pt x 145.14188pt.
+ [10
+
+ <./BranchObfuscation.PNG>] [11
+
+]
+<XOR_Lock.PNG, id=385, 394.47375pt x 217.41225pt>
+File: XOR_Lock.PNG Graphic file (type png)
+<use XOR_Lock.PNG>
+Package pdftex.def Info: XOR_Lock.PNG  used on input line 148.
+(pdftex.def)             Requested size: 236.68607pt x 130.44833pt.
+ [12
+
+ <./XOR_Lock.PNG>]
+<HLockPipeline.PNG, id=416, 507.69675pt x 155.98276pt>
+File: HLockPipeline.PNG Graphic file (type png)
+<use HLockPipeline.PNG>
+Package pdftex.def Info: HLockPipeline.PNG  used on input line 156.
+(pdftex.def)             Requested size: 304.62039pt x 93.59036pt.
+
+Overfull \hbox (13.87776pt too wide) in paragraph at lines 156--156
+ [] 
+ []
+
+[13
+
+ <./HLockPipeline.PNG>]
+<Result_SAT_Power.PNG, id=448, 514.92375pt x 101.178pt>
+File: Result_SAT_Power.PNG Graphic file (type png)
+<use Result_SAT_Power.PNG>
+Package pdftex.def Info: Result_SAT_Power.PNG  used on input line 163.
+(pdftex.def)             Requested size: 308.95662pt x 60.70724pt.
+
+Overfull \hbox (18.21399pt too wide) in paragraph at lines 163--163
+ [] 
+ []
+
+[14
+
+ <./Result_SAT_Power.PNG>]
+<Result_ML.PNG, id=481, 241.50224pt x 59.0205pt>
+File: Result_ML.PNG Graphic file (type png)
+<use Result_ML.PNG>
+Package pdftex.def Info: Result_ML.PNG  used on input line 171.
+(pdftex.def)             Requested size: 241.50163pt x 59.02032pt.
+ [15
+
+ <./Result_ML.PNG>] [16
+
+] [17
+
+]
 \tf@nav=\write6
 \openout6 = `presentation.nav'.
 
@@ -847,29 +970,30 @@ Dictionary: translator-theorem-dictionary, Language: English
 \tf@snm=\write8
 \openout8 = `presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 45.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 45.
- (./presentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 45.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 45.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 184.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 184.
+
+(./presentation.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 184.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 184.
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+(rerunfilecheck)             Checksum: 1E09BE813F04D91799B79053125D7EC6;171.
  ) 
 Here is how much of TeX's memory you used:
- 17666 strings out of 483183
- 337878 string characters out of 5966292
- 585259 words of memory out of 5000000
- 32255 multiletter control sequences out of 15000+600000
- 534150 words of font info for 30 fonts, out of 8000000 for 9000
+ 17866 strings out of 483183
+ 340855 string characters out of 5966292
+ 587264 words of memory out of 5000000
+ 32394 multiletter control sequences out of 15000+600000
+ 538956 words of font info for 48 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  54i,16n,57p,779b,551s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb>
-Output written on presentation.pdf (3 pages, 38424 bytes).
+Output written on presentation.pdf (17 pages, 490489 bytes).
 PDF statistics:
- 110 PDF objects out of 1000 (max. 8388607)
- 95 compressed objects within 1 object stream
- 7 named destinations out of 1000 (max. 500000)
- 43 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 595 PDF objects out of 1000 (max. 8388607)
+ 541 compressed objects within 6 object streams
+ 39 named destinations out of 1000 (max. 500000)
+ 125 words of extra memory for PDF output out of 10000 (max. 10000000)
 
