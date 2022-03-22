@@ -10,7 +10,7 @@
 \usepackage{graphicx}
 
 \title{HLock: Locking IPs at the High-Level Language}
-\subtitle{Rafid M., Roshanak M., Mark T. and Farimah F \\ University of Florida \\ Design Automation Conference(DAC) 2021}
+\subtitle{Rafid M., Roshanak M., Mark T. and Farimah F \\ Design Automation Conference(DAC) 2021}
 
 \begin{document}
     
@@ -24,7 +24,11 @@
 
     \begin{frame}{Authors?}
 
-
+        \begin{itemize}
+            \item Cybersecurity research group at University Of Florida
+            \item Farimah and Mark professors.
+            \item Rafid and Roshanak PhD students.   
+        \end{itemize}
         
     \end{frame}
 
@@ -147,6 +151,19 @@
         
     \end{frame}
 
+    \begin{frame}{Identifying Optimal Lock Key Size}
+
+        Model as ILP problem. 
+        \begin{figure}
+            \includegraphics{Parameter1.PNG}
+        \end{figure}
+
+        \begin{figure}
+            \includegraphics{Parameter2.PNG}
+        \end{figure}
+        
+    \end{frame}
+
     \begin{frame}{Whole setup}
 
         \begin{figure}
@@ -156,6 +173,15 @@
     \end{frame}
 
     \section{Results}
+
+    \begin{frame}{Lock Key Size compared to Previous Approaches}
+
+        \begin{figure}
+            \includegraphics{KeySizeResult.PNG}
+        \end{figure}
+        
+    \end{frame}
+
     \begin{frame}{Power consumption and SAT Resiliency}
         \begin{figure}
             \includegraphics[scale=0.6]{Result_SAT_Power.PNG}
@@ -171,13 +197,19 @@
     \end{frame}
 
     \section{Conclusion}
-    \begin{frame}{Pros and Cons}
+    \begin{frame}{A few drawbacks}
         
+        \begin{itemize}
+            \item Resiliency is highly reliant on optimizations done by HLS tools to locked design. 
+            \item Comparison of results are with previous RTL/Netlist layer locking (not the previous work on HLL layer).
+            \item Lack statistics about time taken to lock the design (potentially much slower than previous approaches).
+        \end{itemize}
+
     \end{frame}
 
     \begin{frame}{Thank you}
 
-        Useful links:
+        Questions?
         
     \end{frame}
 
