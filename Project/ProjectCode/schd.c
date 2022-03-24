@@ -61,7 +61,19 @@ int node_count_type(gnode *g, char t) {
 
 }
 
-//Place NULL checks for mem
+/*
+The ready list ensures the order in which we collect the actions to be done 
+In particular we are interested in the order of memory operations.
+While this definitely does not matter for sequential setting (as we will not get the elements ready to be scheduled until its ighbours), we have to take care of the case when we want to maintain certain memory dependencies in a concurrent context.
+For instance, in SC semantics.
+But on observing, I can see that the ready list is indeed created in-order when it comes to memory accesses/
+This should suffice for our requirement, in that memory actions are ordered.
+However, this would only give us coherence.
+While we need SC semantics, we would need to create a unified list for all memory actions
+In the most strict sense, this set would be an ordered list (total)
+However, relaxations that explain for program transformations will account for the fact that they are indeed a partial order.
+*/
+
 gnode ** create_ready_list(gnode **list, gnode *g, int *ins_loc, char type, char *mem) {
 
     if(g->neighbors == NULL) {
@@ -119,6 +131,10 @@ int set_schedule(gnode **list, char type, int clk_cycle) {
     switch (type)
     {
     case 'S': case 'L':
+        //Note here that we only schedule one Memory action at a time to the same RAM block.
+        //A typical sequential optimization would be to assign the same clock cycle to multiple Reads to the same RAM blcok
+        //In that case, the only catch would be to order WW/WR/RW dependencies.
+        //In addition, it is also possible to schedule RR out of order in a sequential setting.
         if(list[0] != NULL && list[0]->schd == -1) {
             list[0]->schd = clk_cycle;
             return 1;
@@ -219,6 +235,9 @@ int schedule_cdfg(basic_block *b, char **mem_cnt, int st_clk) {
         int sch_nodes = 0;
         sch_nodes += set_schedule(add_list, 'A', st_clk);
         sch_nodes += set_schedule(mul_list, 'M', st_clk);
+
+        //Here whether to call 'L' or 'S' would matter only when we are having multiple Writes and Reads to same RAM blcok in the code.
+        //This could happen, and surely must be tested to ensure that WR/WW/RW dependencies are maintained.
         for(int j = 0; j < mcnt; j++) {
             sch_nodes += set_schedule(mem_list[j], 'L', st_clk); //L or S does not matter
         }

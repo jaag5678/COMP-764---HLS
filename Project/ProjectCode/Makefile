@@ -22,6 +22,10 @@ v4: $(vhdl) vhdlex4.c
 v5: $(vhdl) vhdlex5.c 
 	gcc $(vhdl) vhdlex5.c -o v5
 
+v6: $(vhdl) vhdlex6.c 
+	gcc $(vhdl) vhdlex6.c -o v6
+
+
 #Now the dependencies
 a: ast.c 
 	gcc -c ast.c -o a
