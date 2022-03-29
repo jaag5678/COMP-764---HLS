@@ -79,10 +79,9 @@ int main () {
     basic_block *ex6 = blck_create_from_ast(ast_ex6);
     char **mem_count = get_mem_blocks_from_ast(ast_ex6);
 
-    int clk = schedule_cdfg(ex6, mem_count, 0);
+    //int clk = schedule_cdfg(ex6, mem_count, 0);
+    int clk = schedule_cdfg_sc(ex6, 0);
 
-
-    
     print_schedule(ex6->dfgs[0]);
     print_schedule(ex6->dfgs[1]);
     print_schedule(ex6->dfgs[2]);
@@ -93,12 +92,13 @@ int main () {
 
     //cse(list);
     
+    /*
     for(int i = 0; i < ex6->loc; i++) {
         init_schd(ex6->dfgs[i]);
     }
 
     schedule_cdfg(ex6, mem_count, 0);
-    
+    */
     /*
     print_schedule(ex4->dfgs[0]);
     print_schedule(ex4->dfgs[1]);
@@ -114,6 +114,10 @@ int main () {
     
     resrc **add = inst_upd(add_cnt, 'A', ex6);
     resrc **mul = inst_upd(mul_cnt, 'M', ex6);
+
+    gnode **listu_memu = ord_mem_list(ex6);
+
+    set_sc_order(listu_memu);
 
     //printf("Add instances %d %d \n", add[0]->instance, add[1]->instance);
     //printf("Mul instances %d %d %d\n", mul[0]->instance, mul[1]->instance, mul[2]->instance);
@@ -136,7 +140,7 @@ int main () {
     */
     
 
-    gen_vhdl(ex6, add_muxes, mul_muxes, add, mul, mem_count, list);
+    //gen_vhdl(ex6, add_muxes, mul_muxes, add, mul, mem_count, list);
 
 
 

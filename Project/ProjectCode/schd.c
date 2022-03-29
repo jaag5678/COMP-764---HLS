@@ -131,10 +131,16 @@ int set_schedule(gnode **list, char type, int clk_cycle) {
     switch (type)
     {
     case 'S': case 'L':
-        //Note here that we only schedule one Memory action at a time to the same RAM block.
-        //A typical sequential optimization would be to assign the same clock cycle to multiple Reads to the same RAM blcok
-        //In that case, the only catch would be to order WW/WR/RW dependencies.
-        //In addition, it is also possible to schedule RR out of order in a sequential setting.
+        
+        /*
+            Objective: Make this part sensitive to memory dependencies
+                Make sure that the code does not break on other cases 
+                Make sure that every example created so far is tested this way
+                Just loop through the memory dependency array to make sure that nothing funny is happening 
+        */
+
+        //Check if all previous memory dependencies have already been scheduled
+        //for(int i = 0; list[0]->mem_dep[i] != NULL; i++)
         if(list[0] != NULL && list[0]->schd == -1) {
             list[0]->schd = clk_cycle;
             return 1;
@@ -302,5 +308,197 @@ int get_max_res_blck(basic_block *b, char r_type) {
     }
 
     return res_cnt_max;
+
+}
+
+//Strong ordering of all memory accesses.
+//Memory accesses as though respecting sequentially consistent semantics
+gnode** create_ready_list_mem_sc(gnode **list, gnode *g, int *ins_loc) {
+
+    if(g->neighbors == NULL) {
+        if(g->schd == -1) {
+            list[*ins_loc] = g;
+            (*ins_loc)++;
+        }
+        return list;
+    }
+
+    switch (g->type) {
+        case 'S':
+            if(g->neighbors[0]->schd != -1 && g->schd == -1) {
+                list[*ins_loc] = g;
+                (*ins_loc)++;
+                return list; 
+            }
+            list = create_ready_list_mem_sc(list, g->neighbors[0], ins_loc);
+            break;
+        default: 
+            list = create_ready_list_mem_sc(list, g->neighbors[0], ins_loc);
+            list = create_ready_list_mem_sc(list, g->neighbors[1], ins_loc);
+            break;
+    }
+    return list;
+
+}
+
+//Defining here new scheduling strategy that respects sequential consistency
+int schedule_cdfg_sc(basic_block *b, int st_clk) {
+
+    //First, get total nodes in the entire block
+    int add_nodes = 0;
+    int mul_nodes = 0;
+    int mem_nodes = 0;
+
+
+    for(int i = 0; i < b->loc; i ++) {
+        add_nodes += node_count_type(b->dfgs[i], 'A');
+        mul_nodes += node_count_type(b->dfgs[i], 'M');
+        mem_nodes += (node_count_type(b->dfgs[i], 'S') + node_count_type(b->dfgs[i], 'L'));
+    }
+
+    //Note that mem_nodes here represents how many memory operations exist
+    gnode **add_list = malloc(sizeof(gnode *) * add_nodes);
+    gnode **mul_list = malloc(sizeof(gnode *) * mul_nodes);
+    gnode **mem_list = malloc(sizeof(gnode *) * mem_nodes);
+
+    int total_nodes = add_nodes + mul_nodes + mem_nodes;
+
+    //Main loop for scheduling 
+    while(total_nodes) {
+
+        int x = 0;
+        int y = 0;
+        int z = 0;
+
+        for(int i = 0; i < b->loc; i++) { 
+            //printf("here %d \n", b->loc);
+            create_ready_list(add_list, b->dfgs[i], &x, 'A', NULL);
+            create_ready_list(mul_list, b->dfgs[i], &y, 'M', NULL);
+            create_ready_list_mem_sc(mem_list, b->dfgs[i], &z);
+            //At least one node has been scheduled in the line of code 
+            //This means, either the write is scheduled, or an operation or a read
+            //We need to ensure that memory accesses are ordered, so this condition ensures that 
+            if(x != 0 || y != 0 || z != 0) {
+                break;
+            }
+            printf("x %d y %d z %d \n", x, y, z);
+        
+        }
+
+        int sch_nodes = 0;
+        if(x)
+            sch_nodes += set_schedule(add_list, 'A', st_clk);
+        if(y)
+            sch_nodes += set_schedule(mul_list, 'M', st_clk);
+        if(z)
+            sch_nodes += set_schedule(mem_list, 'L', st_clk);
+        
+        
+        //if(x == 0 && y == 0 && z == 0)
+        //    break;
+        //Inc the clk_cycle by 1
+        st_clk++;
+
+        //Decrement the total nodes by that scheduled
+        total_nodes -= sch_nodes;
+
+    }
+
+    b->min_cycles = st_clk - 1;
+
+    return st_clk;
+
+}
+
+
+/*
+    We need to create dependencies between memory operations 
+    For this we can create an ordered list of memory operations
+    This ordered list will be the strict program order 
+    However, based on the memory order, we will add dependencies to memory operations 
+    Because we have the list which already has an implicit total order, we will modify the gnode of the memory accesses to enforce orderings
+    Additionally, we need to also ensure we order same mmeory operations to avoid coherence violations (RR violation that is)
+*/
+
+//First we write a function that gives us the total count of memory operations given a statement (ikr, C memory management issues)
+int get_mem_cnt(gnode *g) {
+
+    if(g->type == 'L')
+        return 1;
+    
+    switch (g->type)
+    {
+    case 'S':
+        return 1 + get_mem_cnt(g->neighbors[0]);
+        break;
+    default:
+        return get_mem_cnt(g->neighbors[0]) + get_mem_cnt(g->neighbors[1]);
+        break;
+    }
+
+}
+
+gnode **ord_mem_list_stmt(gnode **list, gnode *g, int *ins_loc) {
+
+    if(g->type == 'L') {
+        list[*ins_loc] = g;
+        (*ins_loc)++;
+        return list;
+    }
+
+    switch (g->type)
+    {
+    case 'S':
+        list = ord_mem_list_stmt(list, g->neighbors[0], ins_loc);
+        list[*ins_loc] = g;
+        (*ins_loc)++;
+        break;
+    
+    default:
+        list = ord_mem_list_stmt(list, g->neighbors[0], ins_loc);
+        list = ord_mem_list_stmt(list, g->neighbors[1], ins_loc);
+        break;
+    }
+
+    return list;
+
+}
+
+//First we write a function that returns an ordered list of memory events given a basic bloc
+gnode** ord_mem_list(basic_block *b) {
+
+    int total_mem_cnt = 0;
+
+    for(int i = 0; i < b->loc; i++) {
+        total_mem_cnt += get_mem_cnt(b->dfgs[i]);
+    }
+
+    printf("Total memory operations %d \n", total_mem_cnt);
+
+    gnode **list = malloc(sizeof(gnode *) * total_mem_cnt + 1);
+
+    int ins_loc = 0;
+    for(int i = 0; i < b->loc; i++) {
+        list = ord_mem_list_stmt(list, b->dfgs[i], &ins_loc);
+    }
+
+    list[total_mem_cnt] = NULL;
+
+    //Worst case dependency list allocate memory
+    for(int i = 0; i < total_mem_cnt; i++) {
+        list[i]->mem_dep = malloc(sizeof(gnode *) * i);
+    }
+
+    return list;
+}
+
+void set_sc_order(gnode **mem_list) {
+
+    //Setting Sc order is simple, we just add the gnode which is in the previous location 
+    for(int i = 0; mem_list[i] != NULL; i++) {
+        for(int j = i+1; mem_list[j] != NULL; j++) {
+            mem_list[j]->mem_dep[i] = mem_list[i];
+        }
+    }
 
 }

@@ -34,5 +34,11 @@ int get_max_res_dfg(gnode *, char, int);
 int get_max_res_blck(basic_block *, char);
 
 
+//Scheduling stuff for SC semantics
+gnode** create_ready_list_mem_sc(gnode **, gnode *, int *);
+int schedule_cdfg_sc(basic_block *, int);
 
+//Some other functions to create a proper ordered list 
+gnode** ord_mem_list(basic_block *);
 
+void set_sc_order(gnode **);

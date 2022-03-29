@@ -21,6 +21,10 @@ typedef struct gnode {
     int index; //THe exact memory location taken
     struct gnode **neighbors; //This will be fixed to two for the time being of our implementation
     int schd; // which clock cylce this node should be scheduled
+    
+    //The main node which tracks memory dependencies according to memory model
+    //Will be NULL for A, M and C for sure by default
+    struct gnode **mem_dep; 
 }gnode;
 
 typedef struct basic_block {
