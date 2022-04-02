@@ -4,7 +4,7 @@
 #vhdl_code1 := "vhdl.c" 
 vhdl := a c d s g
 
-all: v1 v2 v3 v4 v5
+all: v1 v2 v3 v4 v5 v6
 
 #First we declare the final target
 v1: $(vhdl) vhdl.c

@@ -34,6 +34,8 @@ int get_max_res_dfg(gnode *, char, int);
 int get_max_res_blck(basic_block *, char);
 
 
+//RESEARCH PROJECT ADDITION
+
 //Scheduling stuff for SC semantics
 gnode** create_ready_list_mem_sc(gnode **, gnode *, int *);
 int schedule_cdfg_sc(basic_block *, int);
@@ -42,3 +44,5 @@ int schedule_cdfg_sc(basic_block *, int);
 gnode** ord_mem_list(basic_block *);
 
 void set_sc_order(gnode **);
+
+void print_mem_dep(gnode **);

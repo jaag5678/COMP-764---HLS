@@ -33,10 +33,13 @@ gnode* expr_to_gnode(gnode *g, expr *e)  {
         strcpy(g->mem, e->leaf->ld->memory);
         g->index = e->leaf->ld->index;
         g->neighbors = NULL;
+        g->mem_dep = NULL;
+        g->m_type = e->leaf->ld->type;
         break;
     default:
         g->type = 'C'; 
         g->neighbors = NULL;
+        g->mem_dep = NULL;
         break;
     }
 
@@ -65,6 +68,8 @@ gnode* ast_to_dfg(gnode *g, stmt *ast) {
     g->neighbors[0] = malloc(sizeof(gnode));
     g->neighbors[0] = expr_to_gnode(g->neighbors[0], ast->st->val);
     g->schd = -1;
+    g->mem_dep = NULL;
+    g->m_type = ast->st->type;
     //printf("I%c", g->neighbors[0]->type);
 
     return g;

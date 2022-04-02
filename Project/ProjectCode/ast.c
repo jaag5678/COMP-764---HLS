@@ -2,13 +2,23 @@
 #include<stdlib.h>
 #include<string.h>
 #include<stdio.h>
+#include<time.h>
 
 //Implementation of functions defined in ast.h
-
 read* set_read(char *m, int i) {
     read *r = malloc(sizeof(read));
     strcpy(r->memory, m);
     r->index = i;
+    //Setting memory order for shared memory concurrency
+    /*
+        Make sure to keep this random, so that we can get many benchmarks
+    */
+    if(strchr(m, (int)('s')) != NULL)
+        r->type =  0;
+    else 
+        r->type = 1;
+    printf("Mem_type %d \n", r->type);
+
     return r;
 }
 
@@ -42,6 +52,11 @@ write* set_write(char *mem, int i, expr *e) {
     strcpy(w -> memory, mem);
     w -> index = i;
     w -> val = e;
+    //Setting memory order for shared memory concurrency
+    if(strchr(mem, (int)'s') != NULL)
+        w->type = 0;
+    else 
+        w->type = 1;
     return w;
 }
 

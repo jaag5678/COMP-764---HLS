@@ -79,6 +79,15 @@ gnode ** create_ready_list(gnode **list, gnode *g, int *ins_loc, char type, char
     if(g->neighbors == NULL) {
         if(g->type == type && g->schd == -1 && !strcmp(g->mem, mem)) {
             //printf("%s %s %d\n", mem, g->mem, strcmp(g->mem, mem));
+
+            //Here it only goes into ready list if all the memory dependencies are already scheduled
+            if(g->mem_dep != NULL) {
+                for(int i = 0; g->mem_dep[i] != NULL; i++) {
+                    if(g->mem_dep[i]->schd == -1)
+                        return list;
+                }
+            }
+            //If we reach here, then even the memory dependencies are satisfied.
             list[*ins_loc] = g;
             (*ins_loc)++;
         }
@@ -441,8 +450,10 @@ int get_mem_cnt(gnode *g) {
 gnode **ord_mem_list_stmt(gnode **list, gnode *g, int *ins_loc) {
 
     if(g->type == 'L') {
-        list[*ins_loc] = g;
-        (*ins_loc)++;
+        if(strchr(g->mem, (int)'s') != NULL) {
+            list[*ins_loc] = g;
+            (*ins_loc)++;
+        }
         return list;
     }
 
@@ -450,8 +461,10 @@ gnode **ord_mem_list_stmt(gnode **list, gnode *g, int *ins_loc) {
     {
     case 'S':
         list = ord_mem_list_stmt(list, g->neighbors[0], ins_loc);
-        list[*ins_loc] = g;
-        (*ins_loc)++;
+        if(strchr(g->mem, (int)'s') != NULL) {
+            list[*ins_loc] = g;
+            (*ins_loc)++;
+        }
         break;
     
     default:
@@ -482,13 +495,17 @@ gnode** ord_mem_list(basic_block *b) {
         list = ord_mem_list_stmt(list, b->dfgs[i], &ins_loc);
     }
 
-    list[total_mem_cnt] = NULL;
+    list[ins_loc] = NULL;
 
     //Worst case dependency list allocate memory
-    for(int i = 0; i < total_mem_cnt; i++) {
-        list[i]->mem_dep = malloc(sizeof(gnode *) * i);
+    for(int i = 0; i < ins_loc; i++) {
+        list[i]->mem_dep = malloc(sizeof(gnode *) * (i + 1));
+        //Set it all to NULL for the time being
+        for(int j = 0; j < i + 1; j++)
+            list[i]->mem_dep[j] = NULL;
     }
 
+    
     return list;
 }
 
@@ -497,8 +514,22 @@ void set_sc_order(gnode **mem_list) {
     //Setting Sc order is simple, we just add the gnode which is in the previous location 
     for(int i = 0; mem_list[i] != NULL; i++) {
         for(int j = i+1; mem_list[j] != NULL; j++) {
-            mem_list[j]->mem_dep[i] = mem_list[i];
+            int k;
+            for(k = 0; mem_list[j]->mem_dep[k] != NULL; k++);
+            //Now k references to the index where we can insert another memory dependency
+            mem_list[j]->mem_dep[k] = mem_list[i];
         }
     }
 
 }
+
+void print_mem_dep(gnode **mem_list) {
+
+    for(int i = 0; mem_list[i] != NULL; i++) {
+        printf("Mem %s ", mem_list[i]->mem);
+        for(int j = 0; mem_list[i]->mem_dep[j] != NULL; j++)
+            printf("-> %s", mem_list[i]->mem_dep[j]->mem);
+        printf("\n");
+    }
+}
+

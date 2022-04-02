@@ -17,7 +17,7 @@
 
 */ 
 
-enum mem_ord {sc = 0, rel = 1, acq = 2, rlx = 3};
+enum mem_ord{sc = 0, rel = 2, acq = 3, rlx = 4, local = 1};
 
 /* Structure for a load
     1) memory -- the name of the RAM block from where it is read
