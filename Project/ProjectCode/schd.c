@@ -440,6 +440,8 @@ int get_mem_cnt(gnode *g) {
     case 'S':
         return 1 + get_mem_cnt(g->neighbors[0]);
         break;
+    case 'C':
+        return 0;
     default:
         return get_mem_cnt(g->neighbors[0]) + get_mem_cnt(g->neighbors[1]);
         break;
@@ -448,6 +450,7 @@ int get_mem_cnt(gnode *g) {
 }
 
 gnode **ord_mem_list_stmt(gnode **list, gnode *g, int *ins_loc) {
+
 
     if(g->type == 'L') {
         if(strchr(g->mem, (int)'s') != NULL) {
@@ -466,7 +469,8 @@ gnode **ord_mem_list_stmt(gnode **list, gnode *g, int *ins_loc) {
             (*ins_loc)++;
         }
         break;
-    
+    case 'C':
+        return list;    
     default:
         list = ord_mem_list_stmt(list, g->neighbors[0], ins_loc);
         list = ord_mem_list_stmt(list, g->neighbors[1], ins_loc);
@@ -481,12 +485,12 @@ gnode **ord_mem_list_stmt(gnode **list, gnode *g, int *ins_loc) {
 gnode** ord_mem_list(basic_block *b) {
 
     int total_mem_cnt = 0;
-
+    
     for(int i = 0; i < b->loc; i++) {
         total_mem_cnt += get_mem_cnt(b->dfgs[i]);
     }
 
-    printf("Total memory operations %d \n", total_mem_cnt);
+    //printf("Total memory operations %d \n", total_mem_cnt);
 
     gnode **list = malloc(sizeof(gnode *) * total_mem_cnt + 1);
 

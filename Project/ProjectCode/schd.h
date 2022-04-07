@@ -5,10 +5,8 @@ Each node in the data-flow-graph will either use
     2) Adder - Plus  (A)
     3) Multiplier - Into (M) 
 Note that constants do not require anything, hence do not bother assigning them to any clock cycle. 
-
 For each resource above, we need to create a ready list, 
 Each list specifying which nodes of dfg are ready to be scheduled with no pending dependencies 
-
 */
 
 #include "cdfg.h"

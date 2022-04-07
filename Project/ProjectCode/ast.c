@@ -17,7 +17,7 @@ read* set_read(char *m, int i) {
         r->type =  0;
     else 
         r->type = 1;
-    printf("Mem_type %d \n", r->type);
+    //printf("Mem_type %d \n", r->type);
 
     return r;
 }
