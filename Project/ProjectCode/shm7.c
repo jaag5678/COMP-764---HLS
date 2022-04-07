@@ -70,10 +70,10 @@ int main() {
     expr_leaf *leaves1[4];
 
 
-    r1[0] = set_read("cs", 0);
-    r1[1] = set_read("ds", 0);
-    r1[2] = set_read("es", 0);
-    r1[3] = set_read("fs", 0);
+    r1[0] = set_read("c1", 0);
+    r1[1] = set_read("d1", 0);
+    r1[2] = set_read("e1", 0);
+    r1[3] = set_read("f1", 0);
 
 
     leaves1[0] = set_exp_leaf(r1[0], 0);
@@ -92,7 +92,7 @@ int main() {
 
 
     w1[0] = set_write("as", 0, e1[4]);
-    w1[1] = set_write("b1", 0, e1[5]);
+    w1[1] = set_write("bs", 0, e1[5]);
 
     stmt_list1[0] = set_stmt(w1[0], 1);
     stmt_list1[1] = set_stmt(w1[1], 1);
@@ -138,7 +138,7 @@ int main() {
     e2[5] = set_expr('+', e2[2], e2[3], NULL);
 
 
-    w2[0] = set_write("a2", 0, e2[4]);
+    w2[0] = set_write("as", 0, e2[4]);
     w2[1] = set_write("bs", 0, e2[5]);
 
     stmt_list2[0] = set_stmt(w2[0], 1);
@@ -208,7 +208,7 @@ int main() {
     merge[2]->dfgs[2] = t2->dfgs[1];
     merge[2]->dfgs[3] = t1->dfgs[1];
 
-    //Merge 4 t2-t2-t1-t1
+    //`
     merge[3]->dfgs[0] = t2->dfgs[0];
     merge[3]->dfgs[1] = t2->dfgs[1];
     merge[3]->dfgs[2] = t1->dfgs[0];
@@ -246,12 +246,12 @@ int main() {
         printf("Total Adders utilized after merge %d \n", a_merge);
 
         print_mem_dep(mem_list);
-        /*
-        print_schedule(merge->dfgs[0]);
-        print_schedule(merge->dfgs[1]);
-        print_schedule(merge->dfgs[2]);
-        print_schedule(merge->dfgs[3]);
-        */
+        
+        print_schedule(merge[j]->dfgs[0]);
+        print_schedule(merge[j]->dfgs[1]);
+        print_schedule(merge[j]->dfgs[2]);
+        print_schedule(merge[j]->dfgs[3]);
+        
     }
     
 

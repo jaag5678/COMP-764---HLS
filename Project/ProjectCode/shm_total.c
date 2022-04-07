@@ -215,12 +215,15 @@ int main() {
 
         //Total Clock cycles to be needed for each thread separately
         printf("%d %d ", clk1, clk2);
+        //Worst case clock cyles used 
+        printf("%d ", clk1 + clk2);
 
         int a1_cnt = get_max_res_blck(t1, 'A');
         int a2_cnt = get_max_res_blck(t2, 'A');
 
         //Total adders used for each thread separately
-        printf("%d %d ", a1_cnt, a2_cnt);
+        //printf("%d %d ", a1_cnt, a2_cnt);
+        //printf("%d ", a1_cnt + a2_cnt);
 
          //Merge the two dfgs in different ways-------------------------------
 
@@ -295,7 +298,7 @@ int main() {
             int a_merge = get_max_res_blck(merge[j], 'A');
 
             //Total Adders utilized after merge
-            printf("%d ", a_merge);
+            //printf("%d ", a_merge);
 
             //print_mem_dep(mem_list);
             /*

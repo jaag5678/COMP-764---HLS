@@ -101,6 +101,12 @@ gnode ** create_ready_list(gnode **list, gnode *g, int *ins_loc, char type, char
         if(g->neighbors[0]->schd != -1 && g->schd == -1) {
             if(g->type == type  && !strcmp(g->mem, mem)) {
                 //printf("%s %s\n", mem , g->mem);
+                if(g->mem_dep != NULL) {
+                    for(int i = 0; g->mem_dep[i] != NULL; i++) {
+                        if(g->mem_dep[i]->schd == -1)
+                            return list;
+                    }
+                }
                 list[*ins_loc] = g;
                 (*ins_loc)++;
             }
@@ -134,6 +140,8 @@ void print_ready_list(gnode **list) {
 
 }
 
+//KEEP NOTE OF THIS 
+
 int set_schedule(gnode **list, char type, int clk_cycle) {
 
     int i = 0;
@@ -151,6 +159,13 @@ int set_schedule(gnode **list, char type, int clk_cycle) {
         //Check if all previous memory dependencies have already been scheduled
         //for(int i = 0; list[0]->mem_dep[i] != NULL; i++)
         if(list[0] != NULL && list[0]->schd == -1) {
+            if(list[0] -> mem_dep != NULL) {
+                for(int i = 0; list[0]->mem_dep[i] != NULL; i++) {
+                    //printf("%d \n", i);
+                    if(list[0]->mem_dep[i]->schd == -1)
+                        return 0;
+                }
+            }
             list[0]->schd = clk_cycle;
             return 1;
         }
@@ -319,106 +334,6 @@ int get_max_res_blck(basic_block *b, char r_type) {
     return res_cnt_max;
 
 }
-
-//Strong ordering of all memory accesses.
-//Memory accesses as though respecting sequentially consistent semantics
-gnode** create_ready_list_mem_sc(gnode **list, gnode *g, int *ins_loc) {
-
-    if(g->neighbors == NULL) {
-        if(g->schd == -1) {
-            list[*ins_loc] = g;
-            (*ins_loc)++;
-        }
-        return list;
-    }
-
-    switch (g->type) {
-        case 'S':
-            if(g->neighbors[0]->schd != -1 && g->schd == -1) {
-                list[*ins_loc] = g;
-                (*ins_loc)++;
-                return list; 
-            }
-            list = create_ready_list_mem_sc(list, g->neighbors[0], ins_loc);
-            break;
-        default: 
-            list = create_ready_list_mem_sc(list, g->neighbors[0], ins_loc);
-            list = create_ready_list_mem_sc(list, g->neighbors[1], ins_loc);
-            break;
-    }
-    return list;
-
-}
-
-//Defining here new scheduling strategy that respects sequential consistency
-int schedule_cdfg_sc(basic_block *b, int st_clk) {
-
-    //First, get total nodes in the entire block
-    int add_nodes = 0;
-    int mul_nodes = 0;
-    int mem_nodes = 0;
-
-
-    for(int i = 0; i < b->loc; i ++) {
-        add_nodes += node_count_type(b->dfgs[i], 'A');
-        mul_nodes += node_count_type(b->dfgs[i], 'M');
-        mem_nodes += (node_count_type(b->dfgs[i], 'S') + node_count_type(b->dfgs[i], 'L'));
-    }
-
-    //Note that mem_nodes here represents how many memory operations exist
-    gnode **add_list = malloc(sizeof(gnode *) * add_nodes);
-    gnode **mul_list = malloc(sizeof(gnode *) * mul_nodes);
-    gnode **mem_list = malloc(sizeof(gnode *) * mem_nodes);
-
-    int total_nodes = add_nodes + mul_nodes + mem_nodes;
-
-    //Main loop for scheduling 
-    while(total_nodes) {
-
-        int x = 0;
-        int y = 0;
-        int z = 0;
-
-        for(int i = 0; i < b->loc; i++) { 
-            //printf("here %d \n", b->loc);
-            create_ready_list(add_list, b->dfgs[i], &x, 'A', NULL);
-            create_ready_list(mul_list, b->dfgs[i], &y, 'M', NULL);
-            create_ready_list_mem_sc(mem_list, b->dfgs[i], &z);
-            //At least one node has been scheduled in the line of code 
-            //This means, either the write is scheduled, or an operation or a read
-            //We need to ensure that memory accesses are ordered, so this condition ensures that 
-            if(x != 0 || y != 0 || z != 0) {
-                break;
-            }
-            printf("x %d y %d z %d \n", x, y, z);
-        
-        }
-
-        int sch_nodes = 0;
-        if(x)
-            sch_nodes += set_schedule(add_list, 'A', st_clk);
-        if(y)
-            sch_nodes += set_schedule(mul_list, 'M', st_clk);
-        if(z)
-            sch_nodes += set_schedule(mem_list, 'L', st_clk);
-        
-        
-        //if(x == 0 && y == 0 && z == 0)
-        //    break;
-        //Inc the clk_cycle by 1
-        st_clk++;
-
-        //Decrement the total nodes by that scheduled
-        total_nodes -= sch_nodes;
-
-    }
-
-    b->min_cycles = st_clk - 1;
-
-    return st_clk;
-
-}
-
 
 /*
     We need to create dependencies between memory operations 
