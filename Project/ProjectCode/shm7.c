@@ -208,7 +208,7 @@ int main() {
     merge[2]->dfgs[2] = t2->dfgs[1];
     merge[2]->dfgs[3] = t1->dfgs[1];
 
-    //`
+    //Merge t2-t2-t1-t1
     merge[3]->dfgs[0] = t2->dfgs[0];
     merge[3]->dfgs[1] = t2->dfgs[1];
     merge[3]->dfgs[2] = t1->dfgs[0];

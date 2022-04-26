@@ -3,8 +3,27 @@
 #include<stdlib.h>
 #include<string.h>
 #include<time.h>
+//#include<unistd.h>
 
 int main() {
+
+      /* 
+            Files to store the total clock cyles and adders required based on different merging strategies
+            It will be a four column format.
+            Col1: Pre-Merge Worst case clock cycle
+            Col2: On Merge Clock Cycles
+            Col3: Pre-merge Adders 
+            Col4: On Merge Adder resource.
+        */
+        FILE *f[6];
+
+        
+        f[0] = fopen("merge0.text", "w+");
+        f[1] = fopen("merge1.text", "w+");
+        f[2] = fopen("merge2.text", "w+");
+        f[3] = fopen("merge3.text", "w+");
+        f[4] = fopen("merge4.text", "w+");
+        f[5] = fopen("merge5.text", "w+");
 
 
     /* 
@@ -24,7 +43,7 @@ int main() {
     printf("\n");
     */
 
-    printf("Program s-T1 s-T2 a-T1 a-T2 s-M1 a-M1 s-M2 a-M2 s-M3 a-M3 s-M4 a-M4 s-M5 a-M5 s-M6 a-M6\n");
+    //printf("Program s-T1 s-T2 a-T1 a-T2 s-M1 a-M1 s-M2 a-M2 s-M3 a-M3 s-M4 a-M4 s-M5 a-M5 s-M6 a-M6\n");
     
     for(int i = 0; i < 4096; i++) {
 
@@ -199,6 +218,11 @@ int main() {
 
         //-------------Basic Blocks ready---------------------
 
+
+      
+        
+
+
         char **m1 = mem;
         char **m2 = m1;
 
@@ -223,7 +247,9 @@ int main() {
 
         //Total adders used for each thread separately
         //printf("%d %d ", a1_cnt, a2_cnt);
-        //printf("%d ", a1_cnt + a2_cnt);
+        printf("%d ", a1_cnt + a2_cnt);
+
+        
 
          //Merge the two dfgs in different ways-------------------------------
 
@@ -281,7 +307,8 @@ int main() {
 
 
         //printf("Lines of code after merging %d \n", merge->loc);
-
+        
+   
         for(int j = 0; j < 6; j++) {
 
             for(int i = 0; i < merge[j]->loc; i++) {
@@ -298,7 +325,18 @@ int main() {
             int a_merge = get_max_res_blck(merge[j], 'A');
 
             //Total Adders utilized after merge
-            //printf("%d ", a_merge);
+            printf("%d ", a_merge);
+
+            //We want to ensure that we are always improving in the total amount of clock cyles that would be required.
+            //Note that this is also fixed given the scheduling, whereas pre-merge it was WORST-CASE.
+            //In contrast, the number of adders (Hardware Accelerators) needed will always be fixed before and after merge
+            //So any improvement would be a good thing after merge 
+            //We hypothesize that there will be always such an improvement.
+            fprintf(f[j], "%d ", i);
+            fprintf(f[j], "%d %d ", clk1 + clk2, clk1 + clk2 - clk_merge);
+            fprintf(f[j], "%d %d\n", a1_cnt + a2_cnt, a1_cnt + a2_cnt - a_merge);
+            
+
 
             //print_mem_dep(mem_list);
             /*
@@ -310,9 +348,18 @@ int main() {
         }
 
         printf("\n");
-     
+
 
     }
 
+    fclose(f[0]);
+    fclose(f[1]);
+    fclose(f[2]);
+    fclose(f[3]);
+    fclose(f[4]);
+    fclose(f[5]);
 
+
+
+    return 0;
 }
