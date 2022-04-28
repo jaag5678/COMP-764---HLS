@@ -17,13 +17,64 @@ int main() {
         */
         FILE *f[6];
 
-        
-        f[0] = fopen("merge0.text", "w+");
-        f[1] = fopen("merge1.text", "w+");
-        f[2] = fopen("merge2.text", "w+");
-        f[3] = fopen("merge3.text", "w+");
-        f[4] = fopen("merge4.text", "w+");
-        f[5] = fopen("merge5.text", "w+");
+        f[0] = fopen("statistics/merge0.text", "w+");
+        f[1] = fopen("statistics/merge1.text", "w+");
+        f[2] = fopen("statistics/merge2.text", "w+");
+        f[3] = fopen("statistics/merge3.text", "w+");
+        f[4] = fopen("statistics/merge4.text", "w+");
+        f[5] = fopen("statistics/merge5.text", "w+");
+
+        /* In addition we need a few more stats. 
+            a) How many programs did we save clock cycles  
+            b) How many programs did we save resources 
+
+            For (a), we would need exactly how many clock cycles were saved, and for each saved, the difference counts.
+            From the previous stats, we can guage the upper limit and store arrays for it accordingly
+
+            FOr (b) too, we observe the previously collected stats and do the same
+        */
+                
+        int clk_stat[5] = {0, 0, 0, 0, 0};
+        int add_stat[3] = {0, 0, 0};
+
+        /*
+            More stats: We also record for each Merge strat, how many clock cycles and resources were saved
+            For this, we would need a 2d array (for each merge) for clock cycles and 2d array for adders 
+        */
+
+        int merge_clk_stats[6][5];
+        int merge_add_stats[6][3];
+
+        for(int i = 0; i < 6; i++) {
+            for(int j = 0; j < 5; j++)
+                merge_clk_stats[i][j] = 0;
+            for(int j = 0; j < 3; j++)
+                merge_add_stats[i][j] = 0;
+        }
+
+        /*  We open the files for the statistics here itself
+        */
+
+        FILE *mc[6];
+        FILE *ma[6];
+
+        //For each merge strat, we record, how many programs benefited by merging 
+
+        mc[0] = fopen("statistics/merge_clk_saved0.txt", "w+");
+        mc[1] = fopen("statistics/merge_clk_saved1.txt", "w+");
+        mc[2] = fopen("statistics/merge_clk_saved2.txt", "w+");
+        mc[3] = fopen("statistics/merge_clk_saved3.txt", "w+");
+        mc[4] = fopen("statistics/merge_clk_saved4.txt", "w+");
+        mc[5] = fopen("statistics/merge_clk_saved5.txt", "w+");
+
+        ma[0] = fopen("statistics/merge_add_saved0.txt", "w+");
+        ma[1] = fopen("statistics/merge_add_saved1.txt", "w+");
+        ma[2] = fopen("statistics/merge_add_saved2.txt", "w+");
+        ma[3] = fopen("statistics/merge_add_saved3.txt", "w+");
+        ma[4] = fopen("statistics/merge_add_saved4.txt", "w+");
+        ma[5] = fopen("statistics/merge_add_saved5.txt", "w+");
+
+
 
 
     /* 
@@ -335,22 +386,68 @@ int main() {
             fprintf(f[j], "%d ", i);
             fprintf(f[j], "%d %d ", clk1 + clk2, clk1 + clk2 - clk_merge);
             fprintf(f[j], "%d %d\n", a1_cnt + a2_cnt, a1_cnt + a2_cnt - a_merge);
+
+            //Here we record the count for programs based on clk cycles / resources saved
+            clk_stat[clk1+clk2 - clk_merge]++;
+            add_stat[a1_cnt + a2_cnt - a_merge]++;
+
+            //Here we record the counts of programs for each clock cycles 
+            merge_clk_stats[j][clk1+clk2 - clk_merge]++;
+            merge_add_stats[j][a1_cnt + a2_cnt - a_merge]++;
             
-
-
-            //print_mem_dep(mem_list);
-            /*
-            print_schedule(merge->dfgs[0]);
-            print_schedule(merge->dfgs[1]);
-            print_schedule(merge->dfgs[2]);
-            print_schedule(merge->dfgs[3]);
-            */
-        }
+        }   
 
         printf("\n");
 
+    }
+
+    /* Here we write out the stats overall
+        -> We record the cases where the worst case clock cycles have been improved
+        -> We also record the cases where we save adder resource.
+        -> This statistics is to show us that merging is indeed a valuable optimization for HLS as opposed to normal programs
+    */ 
+    FILE *fc_cnt, *fa_cnt;
+    
+    fc_cnt = fopen("statistics/clk_count.txt", "w+");
+    fa_cnt = fopen("statistics/add_count.txt", "w+");
+    
+    for(int i = 0; i < 5; i++) 
+        fprintf(fc_cnt, "%d %d\n", i, clk_stat[i]);
+    
+    for(int i = 0; i < 3; i++)
+        fprintf(fa_cnt, "%d %d\n", i, add_stat[i]);
+    
+    
+    /* Here we write out the stats per merge the benefits in terms of clock cycles and add resources 
+    */
+
+    for(int i = 0; i < 6; i++) {
+
+        for(int j = 0; j < 5; j++)
+            fprintf(mc[i], "%d %d\n", j, merge_clk_stats[i][j]);
+        
+        for(int j = 0; j < 3; j++)
+            fprintf(ma[i], "%d %d\n", j, merge_add_stats[i][j]);
 
     }
+
+
+
+    //Close all the file descriptors open till now
+    
+    fclose(ma[0]);
+    fclose(ma[1]);
+    fclose(ma[2]);
+    fclose(ma[3]);
+    fclose(ma[4]);
+    fclose(ma[5]);
+
+    fclose(mc[0]);
+    fclose(mc[1]);
+    fclose(mc[2]);
+    fclose(mc[3]);
+    fclose(mc[4]);
+    fclose(mc[5]);
 
     fclose(f[0]);
     fclose(f[1]);
@@ -359,7 +456,8 @@ int main() {
     fclose(f[4]);
     fclose(f[5]);
 
-
+    fclose(fc_cnt);
+    fclose(fa_cnt);
 
     return 0;
 }
