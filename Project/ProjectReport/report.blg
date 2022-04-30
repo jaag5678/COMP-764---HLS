@@ -1,0 +1,65 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: report.aux
+The style file: ACM-Reference-Format.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: ref.bib
+Repeated entry---line 191 of file ref.bib
+ : @article{DBLP:journals/pcs/MoiseenkoPK21
+ :                                         ,
+I'm skipping whatever remains of this entry
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--empty address in DBLP:conf/fpt/ChoiBA13
+Warning--empty address in DBLP:conf/lcpc/CongLPZ12
+Warning--empty address in DBLP:conf/fccm/HuangLCCXBA13
+Warning--empty address in DBLP:conf/fccm/RamanathanCW18
+Warning--empty address in DBLP:conf/fpga/RamanathanFWC17
+Warning--empty address in DBLP:conf/popl/VafeiadisBCMN15
+You've used 10 entries,
+            5897 wiz_defined-function locations,
+            1413 strings with 18278 characters,
+and the built_in function-call counts, 13457 in all, are:
+= -- 1680
+> -- 500
+< -- 0
++ -- 167
+- -- 154
+* -- 1004
+:= -- 1329
+add.period$ -- 50
+call.type$ -- 10
+change.case$ -- 76
+chr.to.int$ -- 9
+cite$ -- 16
+duplicate$ -- 1170
+empty$ -- 813
+format.name$ -- 189
+if$ -- 3235
+int.to.chr$ -- 3
+int.to.str$ -- 1
+missing$ -- 46
+newline$ -- 145
+num.names$ -- 85
+pop$ -- 414
+preamble$ -- 1
+purify$ -- 164
+quote$ -- 0
+skip$ -- 422
+stack$ -- 0
+substring$ -- 1067
+swap$ -- 138
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 241
+warning$ -- 6
+while$ -- 77
+width$ -- 0
+write$ -- 245
+(There was 1 error message)

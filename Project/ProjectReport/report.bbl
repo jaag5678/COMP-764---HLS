@@ -1,0 +1,218 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{10}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Choi, Brown, and Anderson}{Choi
+  et~al\mbox{.}}{2013}]%
+        {DBLP:conf/fpt/ChoiBA13}
+\bibfield{author}{\bibinfo{person}{Jongsok Choi}, \bibinfo{person}{Stephen~Dean
+  Brown}, {and} \bibinfo{person}{Jason~Helge Anderson}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{From software threads to parallel hardware in
+  high-level synthesis for FPGAs}. In \bibinfo{booktitle}{\emph{2013
+  International Conference on Field-Programmable Technology, {FPT} 2013, Kyoto,
+  Japan, December 9-11, 2013}}. \bibinfo{publisher}{{IEEE}},
+  \bibinfo{pages}{270--277}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1109/FPT.2013.6718365}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Cong, Liu, Prabhakar, and Zhang}{Cong
+  et~al\mbox{.}}{2012}]%
+        {DBLP:conf/lcpc/CongLPZ12}
+\bibfield{author}{\bibinfo{person}{Jason Cong}, \bibinfo{person}{Bin Liu},
+  \bibinfo{person}{Raghu Prabhakar}, {and} \bibinfo{person}{Peng Zhang}.}
+  \bibinfo{year}{2012}\natexlab{}.
+\newblock \showarticletitle{A Study on the Impact of Compiler Optimizations on
+  High-Level Synthesis}. In \bibinfo{booktitle}{\emph{Languages and Compilers
+  for Parallel Computing, 25th International Workshop, {LCPC} 2012, Tokyo,
+  Japan, September 11-13, 2012, Revised Selected Papers}}
+  \emph{(\bibinfo{series}{Lecture Notes in Computer Science})},
+  \bibfield{editor}{\bibinfo{person}{Hironori Kasahara} {and}
+  \bibinfo{person}{Keiji Kimura}} (Eds.), Vol.~\bibinfo{volume}{7760}.
+  \bibinfo{publisher}{Springer}, \bibinfo{pages}{143--157}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1007/978-3-642-37658-0\_10}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Huang, Lian, Canis, Choi, Xi, Brown, and
+  Anderson}{Huang et~al\mbox{.}}{2013}]%
+        {DBLP:conf/fccm/HuangLCCXBA13}
+\bibfield{author}{\bibinfo{person}{Qijing Huang}, \bibinfo{person}{Ruolong
+  Lian}, \bibinfo{person}{Andrew Canis}, \bibinfo{person}{Jongsok Choi},
+  \bibinfo{person}{Ryan Xi}, \bibinfo{person}{Stephen~Dean Brown}, {and}
+  \bibinfo{person}{Jason~Helge Anderson}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{The Effect of Compiler Optimizations on High-Level
+  Synthesis for FPGAs}. In \bibinfo{booktitle}{\emph{21st {IEEE} Annual
+  International Symposium on Field-Programmable Custom Computing Machines,
+  {FCCM} 2013, Seattle, WA, USA, April 28-30, 2013}}.
+  \bibinfo{publisher}{{IEEE} Computer Society}, \bibinfo{pages}{89--96}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1109/FCCM.2013.50}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Lamport}{Lamport}{1979}]%
+        {Lamport79}
+\bibfield{author}{\bibinfo{person}{Leslie Lamport}.}
+  \bibinfo{year}{1979}\natexlab{}.
+\newblock \showarticletitle{How to Make a Multiprocessor Computer That
+  Correctly Executes Multiprocess Programs}.
+\newblock \bibinfo{journal}{\emph{{IEEE} Trans. Computers}}
+  \bibinfo{volume}{28}, \bibinfo{number}{9} (\bibinfo{year}{1979}),
+  \bibinfo{pages}{690--691}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1109/TC.1979.1675439}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Moiseenko, Podkopaev, and Koznov}{Moiseenko
+  et~al\mbox{.}}{2021}]%
+        {DBLP:journals/pcs/MoiseenkoPK21}
+\bibfield{author}{\bibinfo{person}{Evgenii Moiseenko}, \bibinfo{person}{Anton
+  Podkopaev}, {and} \bibinfo{person}{Dmitrij~V. Koznov}.}
+  \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{A Survey of Programming Language Memory Models}.
+\newblock \bibinfo{journal}{\emph{Program. Comput. Softw.}}
+  \bibinfo{volume}{47}, \bibinfo{number}{6} (\bibinfo{year}{2021}),
+  \bibinfo{pages}{439--456}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1134/S0361768821060050}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Ramanathan, Constantinides, and
+  Wickerson}{Ramanathan et~al\mbox{.}}{2018a}]%
+        {DBLP:conf/fccm/RamanathanCW18}
+\bibfield{author}{\bibinfo{person}{Nadesh Ramanathan},
+  \bibinfo{person}{George~A. Constantinides}, {and} \bibinfo{person}{John
+  Wickerson}.} \bibinfo{year}{2018}\natexlab{a}.
+\newblock \showarticletitle{Concurrency-Aware Thread Scheduling for High-Level
+  Synthesis}. In \bibinfo{booktitle}{\emph{26th {IEEE} Annual International
+  Symposium on Field-Programmable Custom Computing Machines, {FCCM} 2018,
+  Boulder, CO, USA, April 29 - May 1, 2018}}. \bibinfo{publisher}{{IEEE}
+  Computer Society}, \bibinfo{pages}{101--108}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1109/FCCM.2018.00025}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Ramanathan, Constantinides, and
+  Wickerson}{Ramanathan et~al\mbox{.}}{2021}]%
+        {DBLP:journals/tvlsi/RamanathanCW21}
+\bibfield{author}{\bibinfo{person}{Nadesh Ramanathan},
+  \bibinfo{person}{George~A. Constantinides}, {and} \bibinfo{person}{John
+  Wickerson}.} \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Global Analysis of {C} Concurrency in High-Level
+  Synthesis}.
+\newblock \bibinfo{journal}{\emph{{IEEE} Trans. Very Large Scale Integr.
+  Syst.}} \bibinfo{volume}{29}, \bibinfo{number}{1} (\bibinfo{year}{2021}),
+  \bibinfo{pages}{24--37}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1109/TVLSI.2020.3026112}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Ramanathan, Fleming, Wickerson, and
+  Constantinides}{Ramanathan et~al\mbox{.}}{2017}]%
+        {DBLP:conf/fpga/RamanathanFWC17}
+\bibfield{author}{\bibinfo{person}{Nadesh Ramanathan},
+  \bibinfo{person}{Shane~T. Fleming}, \bibinfo{person}{John Wickerson}, {and}
+  \bibinfo{person}{George~A. Constantinides}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Hardware Synthesis of Weakly Consistent {C}
+  Concurrency}. In \bibinfo{booktitle}{\emph{Proceedings of the 2017
+  {ACM/SIGDA} International Symposium on Field-Programmable Gate Arrays, {FPGA}
+  2017, Monterey, CA, USA, February 22-24, 2017}},
+  \bibfield{editor}{\bibinfo{person}{Jonathan~W. Greene} {and}
+  \bibinfo{person}{Jason~Helge Anderson}} (Eds.). \bibinfo{publisher}{{ACM}},
+  \bibinfo{pages}{169--178}.
+\newblock
+\urldef\tempurl%
+\url{http://dl.acm.org/citation.cfm?id=3021733}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Ramanathan, Wickerson, and
+  Constantinides}{Ramanathan et~al\mbox{.}}{2018b}]%
+        {DBLP:journals/tc/RamanathanWC18}
+\bibfield{author}{\bibinfo{person}{Nadesh Ramanathan}, \bibinfo{person}{John
+  Wickerson}, {and} \bibinfo{person}{George~A. Constantinides}.}
+  \bibinfo{year}{2018}\natexlab{b}.
+\newblock \showarticletitle{Scheduling Weakly Consistent {C} Concurrency for
+  Reconfigurable Hardware}.
+\newblock \bibinfo{journal}{\emph{{IEEE} Trans. Computers}}
+  \bibinfo{volume}{67}, \bibinfo{number}{7} (\bibinfo{year}{2018}),
+  \bibinfo{pages}{992--1006}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1109/TC.2017.2786249}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Vafeiadis, Balabonski, Chakraborty, Morisset,
+  and Nardelli}{Vafeiadis et~al\mbox{.}}{2015}]%
+        {DBLP:conf/popl/VafeiadisBCMN15}
+\bibfield{author}{\bibinfo{person}{Viktor Vafeiadis}, \bibinfo{person}{Thibaut
+  Balabonski}, \bibinfo{person}{Soham Chakraborty}, \bibinfo{person}{Robin
+  Morisset}, {and} \bibinfo{person}{Francesco~Zappa Nardelli}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Common Compiler Optimisations are Invalid in the
+  {C11} Memory Model and what we can do about it}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 42nd Annual {ACM}
+  {SIGPLAN-SIGACT} Symposium on Principles of Programming Languages, {POPL}
+  2015, Mumbai, India, January 15-17, 2015}},
+  \bibfield{editor}{\bibinfo{person}{Sriram~K. Rajamani} {and}
+  \bibinfo{person}{David Walker}} (Eds.). \bibinfo{publisher}{{ACM}},
+  \bibinfo{pages}{209--220}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1145/2676726.2676995}
+\showDOI{\tempurl}
+
+
+\end{thebibliography}

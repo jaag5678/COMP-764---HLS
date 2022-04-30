@@ -1,0 +1,13 @@
+\section{Discussion}
+
+    %Mention limitation as merging is not a safe transformation in many models of concurrency and a debatable feature to include.
+    The primary limitation of merging is that this optimization is still not sound for programming languages such as Java and C11. 
+    While behavioral models do intend to be written in C-style (for example in LegUp), one would need a different concurrency model to incorporate this optimization.
+    The second limitation is the lack of conditionals and loops.
+    Incorporating these would make merging at the implementation level more complex, as we would have to consider control flow also and merge parts of another thread only outside conditionals and loops of the primary thread, and so on. 
+    Lastly, the scheduling strategy tested for this has only been Greedy.
+
+    %Future work can be done as FPGA synthesis might have different requirements when it comes to memory consistency
+    Future work in this line can be done by making merging more fine grained, and interleave at the level of memory accesses, and not program statements. 
+    The ideal goal would be to come up with a global analysis that identifies for a given concurrent program, the best merging optimization for sets of threads that save resources as well as clock cycles.
+    In addition, it would be nice to see how other optimizations done by HLS tools play in conjuction with merging to give a better synthesized tool. 

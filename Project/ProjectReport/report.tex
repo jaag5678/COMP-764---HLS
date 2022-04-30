@@ -1,0 +1,58 @@
+\documentclass[sigplan,10pt,review]{acmart}
+\settopmatter{printfolios=true,printccs=false,printacmref=false}
+
+
+\usepackage{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{geometry}
+
+\setcopyright{acmcopyright}
+\copyrightyear{2022}
+\acmYear{2022}
+\acmDOI{}
+
+
+\acmConference[COMP 764]{XYZ}{Winter 2022}{Montreal, Quebec, Canada}
+
+\acmBooktitle{Yay book} 
+\acmPrice{Free}
+\acmISBN{}
+
+\title{Constraint driven Scheduling of fine-grained C concurrency for Reconfigurable Hardware}
+\author{Akshay Gopalakrishnan}
+\affiliation{McGill University}
+\email{akshay.akshay@mail.mcgill.ca}
+\date{today}
+
+\begin{document}
+
+    \maketitle 
+
+    \input{intro.tex}
+
+    \input{related.tex}
+
+    \input{method.tex}
+
+    \input{experiment.tex}
+
+    \input{evaluation.tex}
+
+    \input{discussion.tex}
+
+    \section{Conclusions}
+    %Summarize what was done 
+    I tried to address the scheduling problem of fine grained concurrent programs. 
+    Previous work have placed no resource constraint while addressing this problem.
+    I viewed the resource constraint problem as an optimization that can be done at the behavioral model level before scheduling.
+    The optimization helped in addressing the resource constraint problem on most programs considered for benchmarking. 
+    It was noted that different variants of the optimization may be required to get least required resources.
+
+
+    \bibliographystyle{ACM-Reference-Format}
+    \bibliography{ref}
+
+
+\end{document}

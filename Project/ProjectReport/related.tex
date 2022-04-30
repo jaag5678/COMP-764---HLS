@@ -1,0 +1,47 @@
+%Related work
+
+\section{Related Work}
+
+    %Start with HLS tools
+    Several HLS tools are available today; some of the notables being Quartus and LegUp. 
+    LegUp allows their users to insert behavioral models of hardware in C language. 
+    Several works were done further to extend LegUp in synthesizing concurrent C programs to hardware.  
+    
+    \cite{DBLP:conf/fpt/ChoiBA13} propose a method to map software threads to parallel hardware for FPGAs. 
+    They do this for programs that utilize pthreads and OpenMP constructs.
+    However, their focus was mainly on lock-based concurrency in C. 
+    They do note in their experiments that having a constraint on resources to map threads does effect the schedule(more cycles). 
+    Their contributions were integrated into LegUp.
+
+    \cite{DBLP:conf/fpga/RamanathanFWC17} investigate the synthesis of concurrent programs utilizing fine grained concurrency elements of C.
+    They show that on using atomics primitives provided by C, incorrect schedules can be obtained.
+    They remedy this by adding additional ordering constraints among memory accesses.
+    They test their approach by extending LegUp to tackle fine grained concurrent constructs of C.
+    \cite{DBLP:journals/tc/RamanathanWC18} is a follow up to this work implementing pipelined scheduling for such programs.
+        
+    %Put optimization thing here
+    When it comes to HLS tools, one major advantage is the optimizations we can do at the behavioral model itself. 
+    These optimizations, have also been proven to significantly improve the resultant hardware synthesized.
+    \cite{DBLP:conf/lcpc/CongLPZ12} and \cite{DBLP:conf/fccm/HuangLCCXBA13} show the impact/effect of compiler optimizations on HLS for Reconfigurable hardware like FPGAs.
+    Specifically, they show how scheduling(termed as latency) has a major impact due the optimization passes of the compiler, as well as the order in which we perform it. 
+    But their work does not address this impact on concurrent programs(let alone those using fine grained Concurrency) synthesized to hardware. 
+
+    While we do want to perform aggressive optimizations for concurrent behavioral models, we are constrained by the semantics of such programs.
+    \cite{DBLP:conf/popl/VafeiadisBCMN15} shows that programs utilizing fine grained concurrency of C do not get the benefit of some optimizations as they are rendered unsafe in a concurrent context. 
+    \cite{DBLP:conf/fccm/RamanathanCW18} try to identify which memory accesses can be safely reordered in a weakly consistent C program targeted for hardware synthesis.
+    Their goal was to improve the overall schedule of the program, and in turn the hardware that is synthesized for it. 
+    \cite{DBLP:journals/tvlsi/RamanathanCW21} is a follow up to this work describing a global analysis to more aggressively perform safe reorderings of memory accesses for the same purpose.
+
+    Previous works in the line of synthesizing weakly consistent C programs assume that every thread can be mapped to a unique hardware accelerator during synthesis. 
+    They do not investigate the effect of constraining the number of available accelerators.
+    While reordering was proposed in this line to improve schedules, no investigation was done on whether any optimization could have an impact on number of resources required for synthesis. 
+    Moreover, minimization of resources was not a factor considered in this effort; as the primary goal was to get overall correct schedule; and doing optimizations to help lower the required clock cycles. 
+
+
+
+
+    %Show why optimizations can be effective for better synthesis
+    %Show work that investigates on synthesizing concurrent C programs to FPGA
+    %Show work that investigates syntehsizes fine grained concurrent C programs 
+    %Showcase the limitations for each of them
+    
