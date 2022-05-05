@@ -42,6 +42,11 @@ for plot in plots:
 
 xt = np.arange(len(x[0]))
 
+plt.xlabel("Number of clock cycles saved")
+
+plt.ylabel("Number of programs")
+
+
 plt.bar(xt-0.3, y[0], width=0.1, label='Merge0')
 plt.bar(xt-0.2, y[1], width=0.1, label='Merge1')
 plt.bar(xt-0.1, y[2], width=0.1, label='Merge2')
@@ -93,12 +98,18 @@ for plot in plots:
 
 xt = np.arange(len(x[0]))
 
+plt.xlabel("Number of clock cycles saved")
+
+plt.ylabel("Number of programs")
+
+
 plt.bar(xt-0.3, y[0], width=0.1, label='Merge0')
 plt.bar(xt-0.2, y[1], width=0.1, label='Merge1')
 plt.bar(xt-0.1, y[2], width=0.1, label='Merge2')
 plt.bar(xt-0.0, y[3], width=0.1, label='Merge3')
 plt.bar(xt+0.1, y[4], width=0.1, label='Merge4')
 plt.bar(xt+0.2, y[5], width=0.1, label='Merge5')
+
 
 plt.legend()
 

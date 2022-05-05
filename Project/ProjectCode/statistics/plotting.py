@@ -102,6 +102,10 @@ for row in add_plot:
     z.append(int(row[0]))
     w.append(int(row[1]))
 
+plt.xlabel("Number of clock cycles saved")
+
+plt.ylabel("Number of programs")
+
 plt.bar(x, y)
 
 plt.savefig("clk_count.pdf")
@@ -109,6 +113,10 @@ plt.savefig("clk_count.pdf")
 plt.close()
 
 #--------------------------------
+
+plt.xlabel("Number of clock cycles saved")
+
+plt.ylabel("Number of programs")
 
 plt.bar(z, w)
 

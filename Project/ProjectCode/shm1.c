@@ -63,8 +63,7 @@ int main() {
 
     stmt *mp_t1 = set_block(stmt_list1, 2);
 
-    basic_block *t1 = blck_create_from_ast(mp_t1);
-
+   
 
     //------------Thread 2-------------------------------
 
@@ -98,7 +97,7 @@ int main() {
     
     stmt *mp_t2 = set_block(stmt_list2, 2);
 
-    
+    basic_block *t1 = blck_create_from_ast(mp_t1);
     basic_block *t2 = blck_create_from_ast(mp_t2);
 
 

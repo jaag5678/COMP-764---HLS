@@ -36,7 +36,7 @@ int get_max_res_blck(basic_block *, char);
 
 //Some other functions to create a proper ordered list 
 gnode** ord_mem_list(basic_block *);
-
+gnode** ord_mem_list_stmt(gnode **, gnode *, int *);
 void set_sc_order(gnode **);
 
 void print_mem_dep(gnode **);
